@@ -1,1 +1,1 @@
-export { default as SplashImage } from "./splash.png";
+export const logo = require("./images/logo.svg");

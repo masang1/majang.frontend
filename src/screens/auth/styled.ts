@@ -1,22 +1,28 @@
 import { colors } from 'src/styles';
 import styled from 'styled-components/native';
 
-export const AuthScreenContainer = styled.View`
+export const SafeContainer = styled.SafeAreaView`
     flex: 1;
+    background-color: ${colors.white};
+`;
+
+export const TopAreaView = styled.View`
+    flex: 1;
+    backgroud-color: ${colors.white};
     align-items: center;
     justify-content: center;
-    padding: 12px 0;
-    border: 1px solid blue;
+    gap: 20px;
 `;
 
-export const AuthScreenBottomContainer = styled.View`
-    border: 1px solid red;
-    width: 100%;
+export const BottomButtonAreaView = styled.View`
     flex: 0.1;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 `;
 
-export const AuthScreenButtonView = styled.View`
-    width: 80%;
-    background-color: ${colors.black};
-    border-radius: 1.4rem;
+export const ServiceDescriptionView = styled.View`
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 `;
