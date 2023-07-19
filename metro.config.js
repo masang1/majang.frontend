@@ -1,6 +1,8 @@
-const { getDefaultConfig } = require('expo/metro-config')
-
-/** @type {import('expo/metro-config').MetroConfig} */
-const config = getDefaultConfig(__dirname, 'src')
-
-module.exports = config
+const path = require('path');
+module.exports = {
+    resolver: {
+        extraNodeModules: {
+            src: path.resolve(__dirname, 'src'),
+        },
+    },
+};
