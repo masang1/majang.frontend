@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
+import { SplashImage } from "src/assets";
 
 export const MainScreen: React.FC = () => {
     return (
