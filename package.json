@@ -32,6 +32,7 @@
     "prettier": "^3.0.0",
     "react": "18.2.0",
     "react-native": "0.71.8",
+    "styled-components": "^6.0.4",
     "styled-components-react-native": "^1.0.0"
   },
   "devDependencies": {
