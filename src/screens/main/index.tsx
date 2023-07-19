@@ -6,7 +6,7 @@ import { SplashImage } from "src/assets";
 export const MainScreen: React.FC = () => {
     return (
         <View style={styles.container}>
-            <Text>This is Main Screen</Text>
+            <Text>expo는 구조 맘대로 바꾸면 터져요</Text>
             <StatusBar style="auto" />
         </View>
     )
