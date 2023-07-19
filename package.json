@@ -20,5 +20,8 @@
     "@types/react": "~18.0.14",
     "typescript": "^4.9.4"
   },
+  "overrides": {
+    "react-refresh": "~0.14.0"
+  },
   "private": true
 }

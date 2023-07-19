@@ -1,0 +1,1 @@
+export { default as SplashPng } from "./splash.png";
