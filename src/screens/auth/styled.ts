@@ -26,3 +26,11 @@ export const ServiceDescriptionView = styled.View`
     justify-content: center;
     gap: 5px;
 `;
+
+export const SameLineView = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 10px;
+`;

@@ -1,6 +1,6 @@
 import { TouchableOpacity, View, ActivityIndicator, Text } from "react-native"
 
-type bottomButtonProps = {
+export type bottomButtonProps = {
     content: string,
     onClick: any,
     isDisabled: boolean

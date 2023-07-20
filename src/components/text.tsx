@@ -1,6 +1,6 @@
 import { Text } from "react-native"
 
-type TextProps = {
+export type TextProps = {
     content: string,
     fontSize: number,
     fontWeight: "thin" | "light" | "regular" | "medium" | "bold"
