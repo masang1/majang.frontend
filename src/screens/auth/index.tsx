@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import * as S from "./styled"
 import { colors } from "src/styles";
-import { SVGLogo, MajangText, BottomButton, ClickableText } from "../../components";
-// import { AuthBottomSheet } from "./bottomsheet";
+import { SVGLogo, MajangText, Button, ClickableText } from "../../components";
 
 export const AuthScreen: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -17,7 +16,7 @@ export const AuthScreen: React.FC = () => {
                 </S.AuthScreenMainTextContainer>
             </S.AuthScreenMainSection>
             <S.AuthScreenBottomSection>
-                <BottomButton content="시작하기" onClick={() => { setIsLoading(true) }} isDisabled={isLoading} />
+                <Button content="시작하기" onClick={() => { setIsLoading(true) }} isDisabled={isLoading} />
                 <S.AuthScreenBottomTextContainer>
                     <MajangText content="이미 계정이 있으신가요?" fontSize={15} fontWeight="regular" color={colors.black} />
                     <ClickableText
