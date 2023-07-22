@@ -53,15 +53,18 @@ export const PrivacyTabContentTitle = styled.Text`
     font-weight: 600;
 `;
 
-export const PrivacyTabContentWrapper = styled.View`
+export const PrivacyTabContentWrapper = styled.TouchableOpacity`
     flex-direction: row;
     align-items: center;
     column-gap: 10px;
+    z-index: 90;
 `;
 
 
-export const PrivacyTabContentText = styled.Text<{ isActive?: boolean }>`
-    font-size: 18px;
-    font-weight: 700;
+export const PrivacyTabContentText = styled.Text<{ isActive?: boolean, isLinked?: boolean }>`
+    font-size: 16px;
+    font-weight: 600;
     color: ${({ isActive }) => isActive ? colors.black : colors.gray};
+    text-decoration: ${({ isLinked }) => isLinked ? 'underline' : 'none'};
+    text-decoration-color: ${({ isLinked }) => isLinked ? colors.black : colors.gray};
 `;
