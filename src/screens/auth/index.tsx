@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import * as S from "./styled"
 import { Button, Text } from "src/components";
 import { Linking, ScrollView, TouchableOpacity, View } from "react-native";
@@ -17,7 +17,6 @@ export const AuthScreen: React.FC = () => {
     const bottomSheetRef = useRef<BottomSheet>(null);
 
     const snapPoints = useMemo(() => ['30%', '30%'], []);
-
 
     const onOpenLink = (url: string) => {
         Linking.openURL(url);
@@ -47,7 +46,7 @@ export const AuthScreen: React.FC = () => {
         }
     }
 
-    useEffect((
+    useMemo((
     ) => {
         if (Object.values(activeList).every((v) => v === true)) {
             setAllActive(true)
@@ -56,9 +55,9 @@ export const AuthScreen: React.FC = () => {
         }
     }, [activeList])
 
-    const Screen = () => {
-        return (
-            <S.AuthScreenContainer>
+    return (
+        <>
+            <S.AuthScreenContainer tabOpen={privacyTabOpen} activeOpacity={1} onPress={() => setPrivacyTab(false)}>
                 <S.AuthScreenMainSection>
                     <WithLocalSvg
                         width={100}
@@ -79,15 +78,7 @@ export const AuthScreen: React.FC = () => {
                         </TouchableOpacity>
                     </S.AuthScreenBottomTextContainer>
                 </S.AuthScreenBottomSection>
-            </S.AuthScreenContainer>
-        )
-    }
-
-    return (
-        <>
-            {privacyTabOpen ? (
-                <S.PrivacyTabContainer>
-                    <Screen />
+                {privacyTabOpen && (
                     <BottomSheet
                         ref={bottomSheetRef}
                         snapPoints={snapPoints}
@@ -123,8 +114,9 @@ export const AuthScreen: React.FC = () => {
                             </S.PrivacyTabContentContainer>
                         </ScrollView>
                     </BottomSheet>
-                </S.PrivacyTabContainer>
-            ) : <Screen />}
+                )}
+            </S.AuthScreenContainer>
+
         </>
     )
 }

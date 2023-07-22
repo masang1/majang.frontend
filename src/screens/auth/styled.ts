@@ -1,8 +1,10 @@
 import { colors } from 'src/styles';
 import styled from 'styled-components/native';
 
-export const AuthScreenContainer = styled.SafeAreaView`
+export const AuthScreenContainer = styled.TouchableOpacity<{ tabOpen: boolean }>`
     flex: 1;
+    z-index: 10;
+    background-color: ${({ tabOpen }) => tabOpen ? colors.gray : colors.white};
 `;
 
 export const AuthScreenMainSection = styled.View`
@@ -31,13 +33,6 @@ export const AuthScreenBottomTextContainer = styled.View`
     justify-content: center;
     column-gap: 5px;
     margin: 10px;
-`;
-
-
-export const PrivacyTabContainer = styled.View`
-    width: 100%;
-    flex: 1;
-    background-color: #8E8E8E;
 `;
 
 export const PrivacyTabContentContainer = styled.View`
