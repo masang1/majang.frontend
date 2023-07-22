@@ -12,26 +12,22 @@ export default function App() {
 
   const loadFonts = async () => {
     await Font.loadAsync({
-      SpoqahanSansNeo_Thin: require("./assets/fonts/SpoqaHanSansNeo-Thin.ttf"),
-      SpoqahanSansNeo_Light: require("./assets/fonts/SpoqaHanSansNeo-Light.ttf"),
-      SpoqahanSansNeo_Regular: require("./assets/fonts/SpoqaHanSansNeo-Regular.ttf"),
-      SpoqahanSansNeo_Medium: require("./assets/fonts/SpoqaHanSansNeo-Medium.ttf"),
-      SpoqahanSansNeo_Bold: require("./assets/fonts/SpoqaHanSansNeo-Bold.ttf"),
+      SpoqahanSansNeo_Thin: require('./assets/fonts/SpoqaHanSansNeo-Thin.ttf'),
+      SpoqahanSansNeo_Light: require('./assets/fonts/SpoqaHanSansNeo-Light.ttf'),
+      SpoqahanSansNeo_Regular: require('./assets/fonts/SpoqaHanSansNeo-Regular.ttf'),
+      SpoqahanSansNeo_Medium: require('./assets/fonts/SpoqaHanSansNeo-Medium.ttf'),
+      SpoqahanSansNeo_Bold: require('./assets/fonts/SpoqaHanSansNeo-Bold.ttf'),
     });
   };
 
   return isReady ? (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Auth" component={AuthScreen} />
-        <Stack.Screen name="Main" component={MainScreen} />
+        <Stack.Screen name="auth" component={AuthScreen} />
+        <Stack.Screen name="main" component={MainScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   ) : (
-    <AppLoading
-      startAsync={loadFonts}
-      onFinish={() => setIsReady(true)}
-      onError={() => { }}
-    />
+    <AppLoading startAsync={loadFonts} onFinish={() => setIsReady(true)} onError={() => { }} />
   );
 }
