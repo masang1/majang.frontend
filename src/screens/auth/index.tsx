@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import * as S from "./styled"
-import { BottomTab, Button, Text } from "src/components";
-import { TouchableOpacity } from "react-native";
+import { Button, Text } from "src/components";
+import { TouchableOpacity, View } from "react-native";
 import { WithLocalSvg } from "react-native-svg";
 import { LogoSVG } from "src/assets";
+import BottomSheet from '@gorhom/bottom-sheet';
+import { MaterialIcons } from '@expo/vector-icons';
+
 
 export const AuthScreen: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [open, setOpen] = useState<boolean>(false)
+    const [privacyTabOpen, setPrivacyTab] = useState<boolean>(false)
+
+    const bottomSheetRef = useRef<BottomSheet>(null);
+
+    const snapPoints = useMemo(() => ['30%', '30%'], []);
 
     const Screen = () => {
         return (
@@ -24,7 +31,7 @@ export const AuthScreen: React.FC = () => {
                     </Text.Container>
                 </S.AuthScreenMainSection>
                 <S.AuthScreenBottomSection>
-                    <Button content="시작하기" onClick={() => { setIsLoading(true), setOpen(true) }} isDisabled={isLoading} />
+                    <Button content="시작하기" onClick={() => { setIsLoading(true), setPrivacyTab(true) }} isDisabled={isLoading} />
                     <S.AuthScreenBottomTextContainer>
                         <Text size="small">이미 계정이 있으신가요?</Text>
                         <TouchableOpacity onPress={() => { setIsLoading(false) }} activeOpacity={0.5}>
@@ -38,7 +45,25 @@ export const AuthScreen: React.FC = () => {
 
     return (
         <>
-            {open ? <BottomTab><Screen /></BottomTab> : <Screen />}
+            {privacyTabOpen ? (
+                <S.PrivacyTabContainer>
+                    <Screen />
+                    <BottomSheet
+                        ref={bottomSheetRef}
+                        snapPoints={snapPoints}
+                        index={1}
+                    >
+                        <S.PrivacyTabContentContainer>
+                            <S.PrivacyTabContentTitle>이용 약관</S.PrivacyTabContentTitle>
+                            <S.PrivacyTabContentWrapper>
+                                <MaterialIcons name="check-box-outline-blank" size={24} color="000" />
+                                <S.PrivacyTabContentText isActive={true}>모두 동의</S.PrivacyTabContentText>
+                            </S.PrivacyTabContentWrapper>
+                            <Text>Awesome 🎉</Text>
+                        </S.PrivacyTabContentContainer>
+                    </BottomSheet>
+                </S.PrivacyTabContainer>
+            ) : <Screen />}
         </>
     )
 }
