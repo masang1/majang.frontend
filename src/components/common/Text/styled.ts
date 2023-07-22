@@ -4,8 +4,9 @@ import { styled } from "styled-components/native";
 
 export const TextContainer = styled.View`
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+    row-gap: 10px;
 `;
 
 export const TextElement = styled.Text<{ size: string; isBold?: boolean; }>`
@@ -14,18 +15,18 @@ export const TextElement = styled.Text<{ size: string; isBold?: boolean; }>`
         switch (size) {
             case 'large':
                 return css`
-          font-size: 26px;
+          font-size: 30px;
           font-weight: 700;
         `;
             case 'small':
                 return css`
-          font-size: 18px;
-          font-weight: 400;
+          font-size: 16px;
+          font-weight: ${isBold ? 700 : 400};
         `;
             default:
                 return css`
-          font-size: 22px;
-          font-weight: ${isBold ? 700 : 400};
+          font-size: 20px;
+          font-weight: 500;
         `;
         }
     }}

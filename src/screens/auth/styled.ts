@@ -31,6 +31,6 @@ export const AuthScreenBottomTextContainer = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    column-gap: 5px;
     margin: 10px;
 `;

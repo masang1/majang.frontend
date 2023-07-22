@@ -10,8 +10,8 @@ export const TextContainer: React.FC<TextCommonProps> = ({ children }) => {
 }
 
 interface TextProps extends TextCommonProps {
-    size: 'small' | 'large' | 'medium';
-    isBold: boolean;
+    size?: 'small' | 'large' | 'medium';
+    isBold?: boolean;
 }
 
 export const TextComponent: React.FC<TextProps> = ({ children, size = 'medium', isBold = false }) => {
