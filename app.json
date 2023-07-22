@@ -1,13 +1,13 @@
 {
   "expo": {
     "name": "마법의 장터",
-    "slug": "마법의 장터",
+    "slug": "Majang",
     "version": "0.0.1",
     "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
+    "icon": "./src/assets/images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/assets/splash.png",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,17 +17,18 @@
     ],
     "ios": {
       "bundler": "metro",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.masang.majang"
     },
     "android": {
       "bundler": "metro",
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./src/assets/favicon.png"
+      "favicon": "./src/assets/images/favicon.png"
     }
   }
 }
