@@ -3,12 +3,10 @@ import styled from 'styled-components/native';
 
 export const AuthScreenContainer = styled.SafeAreaView`
     flex: 1;
-    background-color: ${colors.white};
 `;
 
 export const AuthScreenMainSection = styled.View`
     flex: 1;
-    background-color: ${colors.white};
     align-items: center;
     justify-content: center;
     gap: 20px;

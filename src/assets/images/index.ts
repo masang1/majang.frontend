@@ -1,1 +1,1 @@
-export const LogoSVG = require("./images/logo.svg");
+export const LogoSVG = require("./logo.svg");

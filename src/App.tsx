@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
-  
+
   const loadFonts = async () => {
     await Font.loadAsync({
       SpoqahanSansNeo_Thin: require("./assets/fonts/SpoqaHanSansNeo-Thin.ttf"),
@@ -31,7 +31,7 @@ export default function App() {
     <AppLoading
       startAsync={loadFonts}
       onFinish={() => setIsReady(true)}
-      onError={() => {}}
+      onError={() => { }}
     />
   );
 }
