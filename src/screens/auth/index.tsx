@@ -1,11 +1,12 @@
 import React, { useMemo, useRef, useState } from "react";
 import * as S from "./styled"
 import { Button, Text } from "src/components";
-import { TouchableOpacity, View } from "react-native";
+import { ScrollView, TouchableOpacity, View } from "react-native";
 import { WithLocalSvg } from "react-native-svg";
 import { LogoSVG } from "src/assets";
 import BottomSheet from '@gorhom/bottom-sheet';
 import { MaterialIcons } from '@expo/vector-icons';
+import { PRIVACY_LIST } from "src/constant";
 
 
 export const AuthScreen: React.FC = () => {
@@ -53,14 +54,18 @@ export const AuthScreen: React.FC = () => {
                         snapPoints={snapPoints}
                         index={1}
                     >
-                        <S.PrivacyTabContentContainer>
-                            <S.PrivacyTabContentTitle>이용 약관</S.PrivacyTabContentTitle>
-                            <S.PrivacyTabContentWrapper>
-                                <MaterialIcons name="check-box-outline-blank" size={24} color="000" />
-                                <S.PrivacyTabContentText isActive={true}>모두 동의</S.PrivacyTabContentText>
-                            </S.PrivacyTabContentWrapper>
-                            <Text>Awesome 🎉</Text>
-                        </S.PrivacyTabContentContainer>
+                        <ScrollView>
+                            <S.PrivacyTabContentContainer>
+                                <S.PrivacyTabContentTitle>이용 약관</S.PrivacyTabContentTitle>
+                                {PRIVACY_LIST.map(({ text, icon }) => (
+                                    <S.PrivacyTabContentWrapper>
+                                        {icon}
+                                        <S.PrivacyTabContentText isActive={true}>{text}</S.PrivacyTabContentText>
+                                    </S.PrivacyTabContentWrapper>
+                                ))}
+                                <Text>Awesome 🎉</Text>
+                            </S.PrivacyTabContentContainer>
+                        </ScrollView>
                     </BottomSheet>
                 </S.PrivacyTabContainer>
             ) : <Screen />}
