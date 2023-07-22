@@ -7,9 +7,9 @@ type ClickableTextProps = {
     textProps: TextProps
 }
 
-export const ClickableText: React.FC<ClickableTextProps> = ({onClick, isDisabled, textProps} : ClickableTextProps) => {
+export const ClickableText: React.FC<ClickableTextProps> = ({ onClick, isDisabled, textProps }: ClickableTextProps) => {
     return (
-        <TouchableOpacity onPress={onClick} disabled={isDisabled}>
+        <TouchableOpacity onPress={onClick} disabled={isDisabled} activeOpacity={0.5}>
             <MajangText
                 content={textProps.content}
                 fontSize={textProps.fontSize}
