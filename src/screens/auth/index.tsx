@@ -7,8 +7,11 @@ import { LogoSVG } from "src/assets";
 import BottomSheet from '@gorhom/bottom-sheet';
 import { PRIVACY_LIST } from "src/constant";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export const AuthScreen: React.FC = () => {
+    const navigate = useNavigation().navigate as (s: string) => void;
+
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [privacyTab, setPrivacyTab] = useState<boolean>(false)
     const [activeList, setActiveList] = useState(PRIVACY_LIST.map((v) => false));
@@ -16,7 +19,7 @@ export const AuthScreen: React.FC = () => {
 
     const bottomSheetRef = useRef<BottomSheet>(null);
 
-    const snapPoints = useMemo(() => ['30%', '30%'], []);
+    const snapPoints = useMemo(() => ['40%', '40%'], []);
 
     const onOpenLink = (url: string) => {
         Linking.openURL(url);
@@ -115,9 +118,11 @@ export const AuthScreen: React.FC = () => {
                                     }
                                 </S.PrivacyTabContentWrapper>
                             ))}
+                            <Button content="계속하기" isDisabled={!allActive} onClick={() => navigate('/phone')} />
                         </S.PrivacyTabContentContainer>
                     </ScrollView>
-                </BottomSheet>)}
+                </BottomSheet>
+                )}
             </S.AuthScreenContainer>
 
         </>

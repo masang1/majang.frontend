@@ -5,6 +5,7 @@ export const AuthScreenContainer = styled.TouchableOpacity<{ tabOpen: boolean }>
     flex: 1;
     z-index: 10;
     background-color: ${({ tabOpen }) => tabOpen ? colors.gray : colors.white};
+    padding: 0 20px;
 `;
 
 export const AuthScreenMainSection = styled.View`
@@ -39,7 +40,7 @@ export const PrivacyTabContentContainer = styled.View`
     flex: 1;
     flex-direction: column;
     justify-content: flex-start;
-    row-gap: 16px;
+    row-gap: 24px;
     padding: 10px 20px 40px 20px;
 `;
 
