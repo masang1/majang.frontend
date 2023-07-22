@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import * as S from "./styled"
 import { Button, Text } from "src/components";
 import { Linking, ScrollView, TouchableOpacity, View } from "react-native";
@@ -10,7 +10,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 export const AuthScreen: React.FC = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [privacyTabOpen, setPrivacyTab] = useState<boolean>(false)
+    const [privacyTab, setPrivacyTab] = useState<boolean>(false)
     const [activeList, setActiveList] = useState(PRIVACY_LIST.map((v) => false));
     const [allActive, setAllActive] = useState<boolean>(false);
 
@@ -46,6 +46,11 @@ export const AuthScreen: React.FC = () => {
         }
     }
 
+    const handleClosePress = () => {
+        setPrivacyTab(false);
+        bottomSheetRef.current?.close();
+    };
+
     useMemo((
     ) => {
         if (Object.values(activeList).every((v) => v === true)) {
@@ -57,7 +62,7 @@ export const AuthScreen: React.FC = () => {
 
     return (
         <>
-            <S.AuthScreenContainer tabOpen={privacyTabOpen} activeOpacity={1} onPress={() => setPrivacyTab(false)}>
+            <S.AuthScreenContainer tabOpen={privacyTab} activeOpacity={1} onPress={handleClosePress}>
                 <S.AuthScreenMainSection>
                     <WithLocalSvg
                         width={100}
@@ -78,43 +83,41 @@ export const AuthScreen: React.FC = () => {
                         </TouchableOpacity>
                     </S.AuthScreenBottomTextContainer>
                 </S.AuthScreenBottomSection>
-                {privacyTabOpen && (
-                    <BottomSheet
-                        ref={bottomSheetRef}
-                        snapPoints={snapPoints}
-                        index={1}
-                    >
-                        <ScrollView>
-                            <S.PrivacyTabContentContainer>
-                                <S.PrivacyTabContentTitle>이용 약관</S.PrivacyTabContentTitle>
-                                <S.PrivacyTabContentWrapper onPress={onListToggle} activeOpacity={1}>
-                                    <TouchableOpacity activeOpacity={0.5} onPress={onListToggle}>
-                                        {allActive ? (
-                                            <MaterialIcons name={"check-box"} size={20} color="000" />
-                                        ) : (
-                                            <MaterialIcons name={"check-box-outline-blank"} size={20} color="000" />
-                                        )}
+                {privacyTab && (<BottomSheet
+                    ref={bottomSheetRef}
+                    snapPoints={snapPoints}
+                    index={1}
+                >
+                    <ScrollView>
+                        <S.PrivacyTabContentContainer>
+                            <S.PrivacyTabContentTitle>이용 약관</S.PrivacyTabContentTitle>
+                            <S.PrivacyTabContentWrapper onPress={onListToggle} activeOpacity={1}>
+                                <TouchableOpacity activeOpacity={0.5} onPress={onListToggle}>
+                                    {allActive ? (
+                                        <MaterialIcons name={"check-box"} size={20} color="000" />
+                                    ) : (
+                                        <MaterialIcons name={"check-box-outline-blank"} size={20} color="000" />
+                                    )}
+                                </TouchableOpacity>
+                                <S.PrivacyTabContentText isActive={allActive}>모두 동의</S.PrivacyTabContentText>
+                            </S.PrivacyTabContentWrapper>
+                            {PRIVACY_LIST.map(({ text, icon, linkText, url, activeIcon }, i) => (
+                                <S.PrivacyTabContentWrapper onPress={() => onActive(i)} activeOpacity={1}>
+                                    <TouchableOpacity activeOpacity={0.5} onPress={() => onActive(i)}>
+                                        {activeList[i] ? activeIcon : icon}
                                     </TouchableOpacity>
-                                    <S.PrivacyTabContentText isActive={allActive}>모두 동의</S.PrivacyTabContentText>
-                                </S.PrivacyTabContentWrapper>
-                                {PRIVACY_LIST.map(({ text, icon, linkText, url, activeIcon }, i) => (
-                                    <S.PrivacyTabContentWrapper onPress={() => onActive(i)} activeOpacity={1}>
-                                        <TouchableOpacity activeOpacity={0.5} onPress={() => onActive(i)}>
-                                            {activeList[i] ? activeIcon : icon}
-                                        </TouchableOpacity>
-                                        {linkText && url ?
-                                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                                <S.PrivacyTabContentText isActive={activeList[i]} onPress={() => onOpenLink(url)} isLinked={true}>{linkText}</S.PrivacyTabContentText>
-                                                <S.PrivacyTabContentText isActive={activeList[i]}>{text}</S.PrivacyTabContentText>
-                                            </View> :
+                                    {linkText && url ?
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                            <S.PrivacyTabContentText isActive={activeList[i]} onPress={() => onOpenLink(url)} isLinked={true}>{linkText}</S.PrivacyTabContentText>
                                             <S.PrivacyTabContentText isActive={activeList[i]}>{text}</S.PrivacyTabContentText>
-                                        }
-                                    </S.PrivacyTabContentWrapper>
-                                ))}
-                            </S.PrivacyTabContentContainer>
-                        </ScrollView>
-                    </BottomSheet>
-                )}
+                                        </View> :
+                                        <S.PrivacyTabContentText isActive={activeList[i]}>{text}</S.PrivacyTabContentText>
+                                    }
+                                </S.PrivacyTabContentWrapper>
+                            ))}
+                        </S.PrivacyTabContentContainer>
+                    </ScrollView>
+                </BottomSheet>)}
             </S.AuthScreenContainer>
 
         </>
