@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AuthScreen, MainScreen } from './screens';
+import { AuthScreen, AuthStep1Screen, MainScreen } from './screens';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { useState } from 'react';
@@ -22,9 +22,10 @@ export default function App() {
 
   return isReady ? (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="auth" component={AuthScreen} />
-        <Stack.Screen name="main" component={MainScreen} />
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Auth'>
+        <Stack.Screen name="Auth" component={AuthScreen} />
+        <Stack.Screen name="Auth/Step1" component={AuthStep1Screen} />
+        <Stack.Screen name="Main" component={MainScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   ) : (

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import * as S from './styled';
 import { Button, Text } from 'src/components';
 import { Linking, ScrollView, TouchableOpacity, View } from 'react-native';
@@ -137,7 +137,7 @@ export const AuthScreen: React.FC = () => {
                 <Button
                   content="계속하기"
                   isDisabled={!allActive}
-                  onClick={() => navigate('Main')}
+                  onClick={() => navigate('Auth/Step1')}
                 />
               </S.PrivacyTabContentContainer>
             </ScrollView>
