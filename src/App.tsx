@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AuthScreen, AuthStep1Screen, MainScreen } from './screens';
+import { AuthScreen, AuthStep1Screen, AuthStep2Screen, MainScreen } from './screens';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { useState } from 'react';
@@ -24,7 +24,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Auth'>
         <Stack.Screen name="Auth" component={AuthScreen} />
-        <Stack.Screen name="Auth/Step1" component={AuthStep1Screen} />
+        <Stack.Screen name="AuthStep1" component={AuthStep1Screen} />
+        <Stack.Screen name="AuthStep2" component={AuthStep2Screen} />
         <Stack.Screen name="Main" component={MainScreen} />
       </Stack.Navigator>
     </NavigationContainer>

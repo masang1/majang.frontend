@@ -136,7 +136,7 @@ export const AuthScreen: React.FC = () => {
                 <Button
                   content="계속하기"
                   isDisabled={!allActive}
-                  onClick={() => navigate('Auth/Step1')}
+                  onClick={() => navigate('AuthStep1')}
                 />
               </S.PrivacyTabContentContainer>
             </ScrollView>
