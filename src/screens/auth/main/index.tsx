@@ -67,10 +67,10 @@ export const AuthScreen: React.FC = () => {
       <S.AuthScreenContainer tabOpen={privacyTab} activeOpacity={1} onPress={handleClosePress}>
         <S.AuthScreenMainSection>
           <WithLocalSvg width={100} height={100} asset={LogoSVG} />
-          <Text.Container isCenter={true}>
+          <Text.Column isCenter={true}>
             <Text size="large">마법의 장터 </Text>
             <Text>나만의 취미 상품 장터, 마법의 장터</Text>
-          </Text.Container>
+          </Text.Column>
         </S.AuthScreenMainSection>
         <S.AuthScreenBottomSection>
           <Button
@@ -80,17 +80,20 @@ export const AuthScreen: React.FC = () => {
             }}
           />
           <S.AuthScreenBottomTextContainer>
-            <Text size="small">이미 계정이 있으신가요?</Text>
-            <TouchableOpacity
-              onPress={() => {
-                setIsLoading(false);
-              }}
-              activeOpacity={0.5}
-            >
-              <Text size="small" isBold={true}>
-                로그인
-              </Text>
-            </TouchableOpacity>
+            <Text.Row>
+              <Text>이미 계정이 있으신가요?</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setIsLoading(false);
+                  navigate('Login');
+                }}
+                activeOpacity={0.5}
+              >
+                <Text isPrimary={true}>
+                  로그인
+                </Text>
+              </TouchableOpacity>
+            </Text.Row>
           </S.AuthScreenBottomTextContainer>
         </S.AuthScreenBottomSection>
         {privacyTab && (
@@ -142,7 +145,7 @@ export const AuthScreen: React.FC = () => {
             </ScrollView>
           </BottomSheet>
         )}
-      </S.AuthScreenContainer>
+      </S.AuthScreenContainer >
     </>
   );
 };

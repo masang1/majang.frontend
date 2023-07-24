@@ -5,31 +5,36 @@ export interface TextCommonProps {
   children: React.ReactNode;
 }
 
-export interface TextContainerProps extends TextCommonProps {
+export interface TextColumnContainerProps extends TextCommonProps {
   isCenter?: boolean;
 }
 
-export const TextContainer: React.FC<TextContainerProps> = ({ children, isCenter }) => {
-  return <S.TextContainer isCenter={isCenter}>{children}</S.TextContainer>;
+export const TextColumnContainer: React.FC<TextColumnContainerProps> = ({ children, isCenter }) => {
+  return <S.TextColumnContainer isCenter={isCenter}>{children}</S.TextColumnContainer>;
 };
+
+export const TextRowContainer: React.FC<TextCommonProps> = ({ children }) => {
+  return <S.TextRowContainer>{children}</S.TextRowContainer>;
+}
 
 interface TextProps extends TextCommonProps {
   size?: 'small' | 'large' | 'medium';
-  isBold?: boolean;
+  isPrimary?: boolean;
 }
 
 export const TextComponent: React.FC<TextProps> = ({
   children,
   size = 'medium',
-  isBold = false,
+  isPrimary = false,
 }) => {
   return (
-    <S.TextElement size={size} isBold={isBold}>
+    <S.TextElement size={size} isPrimary={isPrimary} >
       {children}
     </S.TextElement>
   );
 };
 
 export const Text = Object.assign(TextComponent, {
-  Container: TextContainer,
+  Column: TextColumnContainer,
+  Row: TextRowContainer,
 });

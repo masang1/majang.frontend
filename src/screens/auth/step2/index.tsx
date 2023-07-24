@@ -1,13 +1,27 @@
 
-import { AuthScreen, Input } from "src/components"
+
+import { TouchableOpacity, View } from "react-native"
+import { AuthScreen, Text } from "src/components"
+
 export const AuthStep2Screen: React.FC = () => {
     return (
         <AuthScreen
-            title="휴대폰 인증"
-            subTitle={`마법의 장터에서는 휴대폰 번호로 로그인해요.\n` + `휴대폰 번호는 안전하게 보관되며, 함부로 공개되지 않아요.`}
-            input={<>Hello</>}
             buttonText="계속"
-            navigateUrl="AuthStep2"
-        />
+            prevUrl="Auth1"
+            nextUrl="main"
+        >
+            <Text.Column>
+                <Text size="large">인증번호 입력</Text>
+                <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+                    <Text>010-3172-0552로 인증번호를 보냈어요.</Text>
+                    <Text.Row>
+                        <Text>인증번호가 오지 않나요?</Text>
+                        <TouchableOpacity activeOpacity={0.5}>
+                            <Text isPrimary={true}>재전송하기</Text>
+                        </TouchableOpacity>
+                    </Text.Row>
+                </View>
+            </Text.Column>
+        </AuthScreen>
     )
 }
