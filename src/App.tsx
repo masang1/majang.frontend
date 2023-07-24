@@ -26,15 +26,21 @@ export default function App() {
   return isReady ? (
     <RecoilRoot>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Auth">
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Main">
+          <Stack.Screen name="Main" component={MainScreen} />
           <Stack.Screen name="Auth" component={AuthScreen} />
           <Stack.Screen name="AuthStep1" component={AuthStep1Screen} />
           <Stack.Screen name="AuthStep2" component={AuthStep2Screen} />
-          <Stack.Screen name="Main" component={MainScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </RecoilRoot>
   ) : (
-    <AppLoading startAsync={loadFonts} onFinish={() => setIsReady(true)} onError={() => {}} />
+    <AppLoading
+      startAsync={loadFonts}
+      onFinish={() => setIsReady(true)}
+      onError={() => {
+        console.log('error');
+      }}
+    />
   );
 }
