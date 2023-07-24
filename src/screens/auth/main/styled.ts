@@ -19,7 +19,7 @@ export const AuthScreenBottomSection = styled.View`
   flex: 0.1;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 `;
 
 export const AuthScreenMainTextContainer = styled.View`

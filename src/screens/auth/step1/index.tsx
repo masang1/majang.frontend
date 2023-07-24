@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { AuthScreen, Button, Input, Text } from "src/components";
-import { useNavigation } from "@react-navigation/native";
+import * as S from "./styled"
+import { useSetRecoilState } from "recoil";
+import { phoneState } from "src/atom";
 
 export const AuthStep1Screen: React.FC = () => {
-    const navigate = useNavigation().navigate as (s: string) => void;
+    const [text, setText] = useState<string>("")
+    const setPhone = useSetRecoilState(phoneState)
+
+    const onTextChange = (text: string) => {
+        setText(text)
+        setPhone(text)
+    }
 
     return (
         <AuthScreen
-            isDisabled={false}
+            isDisabled={text.length !== 11}
             buttonText="계속"
             prevUrl="Auth"
             nextUrl="AuthStep2"
@@ -19,7 +27,7 @@ export const AuthStep1Screen: React.FC = () => {
                     휴대폰 번호는 안전하게 보관되며, 함부로 공개되지 않아요.
                 </Text>
             </Text.Column>
-            <Input placeholder="전화번호를 입력해주세요" />
+            <S.AuthStep1ScreenInput keyboardType="numeric" value={text} onChangeText={onTextChange} placeholder="전화번호를 입력해주세요" />
         </AuthScreen>
     )
 }
