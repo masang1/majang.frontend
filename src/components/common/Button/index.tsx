@@ -23,7 +23,6 @@ export const Button: React.FC<ButtonProps> = ({ content, onClick, isDisabled }) 
           flexDirection: 'row',
         }}
       >
-        {/* {isDisabled ? <ActivityIndicator size="small" style={{ marginRight: 5 }} color={"#FFFFFF"} /> : null} */}
         <Text style={{ color: '#fff', fontSize: 17, fontWeight: 'bold' }}>{content}</Text>
       </View>
     </S.ButtonContainer>
