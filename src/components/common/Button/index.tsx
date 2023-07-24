@@ -4,7 +4,7 @@ import * as S from './styled';
 export interface ButtonProps {
   content: string;
   onClick: any;
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({ content, onClick, isDisabled }) => {

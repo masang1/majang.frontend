@@ -67,7 +67,7 @@ export const AuthScreen: React.FC = () => {
       <S.AuthScreenContainer tabOpen={privacyTab} activeOpacity={1} onPress={handleClosePress}>
         <S.AuthScreenMainSection>
           <WithLocalSvg width={100} height={100} asset={LogoSVG} />
-          <Text.Container>
+          <Text.Container isCenter={true}>
             <Text size="large">마법의 장터 </Text>
             <Text>나만의 취미 상품 장터, 마법의 장터</Text>
           </Text.Container>
@@ -78,7 +78,6 @@ export const AuthScreen: React.FC = () => {
             onClick={() => {
               setIsLoading(true), setPrivacyTab(true);
             }}
-            isDisabled={isLoading}
           />
           <S.AuthScreenBottomTextContainer>
             <Text size="small">이미 계정이 있으신가요?</Text>

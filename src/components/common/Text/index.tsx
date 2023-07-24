@@ -5,8 +5,12 @@ export interface TextCommonProps {
   children: React.ReactNode;
 }
 
-export const TextContainer: React.FC<TextCommonProps> = ({ children }) => {
-  return <S.TextContainer>{children}</S.TextContainer>;
+export interface TextContainerProps extends TextCommonProps {
+  isCenter?: boolean;
+}
+
+export const TextContainer: React.FC<TextContainerProps> = ({ children, isCenter }) => {
+  return <S.TextContainer isCenter={isCenter}>{children}</S.TextContainer>;
 };
 
 interface TextProps extends TextCommonProps {

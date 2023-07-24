@@ -1,10 +1,10 @@
 import { colors } from 'src/styles';
-import { css } from 'styled-components';
+import { css } from 'styled-components/native';
 import { styled } from 'styled-components/native';
 
-export const TextContainer = styled.View`
+export const TextContainer = styled.View<{ isCenter?: boolean }>`
   flex-direction: column;
-  align-items: center;
+  align-items: ${({ isCenter }) => (isCenter ? 'center' : 'flex-start')};
   justify-content: center;
   row-gap: 10px;
 `;
@@ -20,8 +20,8 @@ export const TextElement = styled.Text<{ size: string; isBold?: boolean }>`
         `;
       case 'small':
         return css`
-          font-size: 16px;
-          font-weight: ${isBold ? 700 : 400};
+          font-size: 15px;
+          font-weight: ${isBold ? 700 : 500};
         `;
       default:
         return css`
