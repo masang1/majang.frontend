@@ -5,4 +5,5 @@ export const colors = {
   danger: '#FF4141',
   secondary: '#6788FF',
   glassBackground: '#F4F4F5',
+  placeHolder: '#5C5C5C',
 };
