@@ -1,22 +1,57 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
 
-import { Header } from 'src/components';
+import { Feather } from '@expo/vector-icons';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { ChatScreen, HomeScreen, MyScreen, RegistrationScreen, SearchScreen } from 'src/screens';
+
+const BottomTab = createBottomTabNavigator();
 
 export const MainScreen: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Header />
-      <Text>expo는 구조 맘대로 바꾸면 터져요</Text>
-    </View>
+    <BottomTab.Navigator screenOptions={{ headerShown: false }} initialRouteName="Main">
+      <BottomTab.Screen
+        name="홈"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => <Feather name="home" size={size} color={color} />,
+          tabBarActiveTintColor: '#000',
+        }}
+      />
+      <BottomTab.Screen
+        name="검색"
+        component={SearchScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => <Feather name="search" size={size} color={color} />,
+          tabBarActiveTintColor: '#000',
+        }}
+      />
+      <BottomTab.Screen
+        name="등록"
+        component={RegistrationScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => <Feather name="plus-circle" size={size} color={color} />,
+          tabBarActiveTintColor: '#000',
+        }}
+      />
+      <BottomTab.Screen
+        name="채팅"
+        component={ChatScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="message-circle" size={size} color={color} />
+          ),
+          tabBarActiveTintColor: '#000',
+        }}
+      />
+      <BottomTab.Screen
+        name="MY"
+        component={MyScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => <Feather name="user" size={size} color={color} />,
+          tabBarActiveTintColor: '#000',
+        }}
+      />
+    </BottomTab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
