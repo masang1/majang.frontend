@@ -13,11 +13,9 @@ export const AuthStep2Screen: React.FC = () => {
   const [verificationCode, setVerificationCode] = useState<string>('');
 
   const handleChange = (index: number, text: string) => {
-    if (text.length === 1) {
-      const updatedCode = verificationCode.split('');
-      updatedCode[index] = text;
-      setVerificationCode(updatedCode.join(''));
-    }
+    const updatedCode = verificationCode.split('');
+    updatedCode[index] = text;
+    setVerificationCode(updatedCode.join(''));
   };
 
   const handleResendCode = () => {
@@ -25,7 +23,12 @@ export const AuthStep2Screen: React.FC = () => {
   };
 
   return (
-    <AuthScreen buttonText="계속" prevUrl="AuthStep1" nextUrl="Main">
+    <AuthScreen
+      buttonText="계속"
+      prevUrl="AuthStep1"
+      nextUrl="Main"
+      isDisabled={verificationCode.length !== 6}
+    >
       <Text.Column>
         <Text size="large">인증번호 입력</Text>
         <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>

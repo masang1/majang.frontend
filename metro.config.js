@@ -1,7 +1,10 @@
-import { resolve } from 'path';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
 
-export const resolver = {
-  extraNodeModules: {
-    src: resolve(__dirname, 'src'),
+module.exports = {
+  resolver: {
+    extraNodeModules: {
+      src: path.resolve(__dirname, 'src'),
+    },
   },
 };

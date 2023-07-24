@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 import styled from 'styled-components/native';
 
 import { colors } from 'src/styles';
@@ -5,7 +7,7 @@ import { colors } from 'src/styles';
 export const AuthScreenWrapper = styled.View`
   flex: 1;
   z-index: 10;
-  padding: 70px 20px 40px 20px;
+  padding: 70px 20px ${Platform.OS === 'android' ? '20px' : '40px'} 20px;
   flex-direction: column;
   justify-content: space-between;
   background-color: ${colors.white};
