@@ -1,9 +1,7 @@
-const path = require('path');
+import { resolve } from 'path';
 
-module.exports = {
-    resolver: {
-        extraNodeModules: {
-            src: path.resolve(__dirname, 'src'),
-        },
-    },
+export const resolver = {
+  extraNodeModules: {
+    src: resolve(__dirname, 'src'),
+  },
 };

@@ -19,7 +19,9 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx,json}\" --fix --cache",
+    "format": "prettier \"**/*.{js,jsx,ts,tsx,json}\" --write"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
@@ -27,19 +29,21 @@
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "@react-navigation/stack": "^6.3.17",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "expo": "^49.0.3",
     "expo-app-loading": "^2.1.1",
     "expo-font": "^11.4.0",
     "expo-splash-screen": "^0.20.4",
     "expo-status-bar": "~1.6.0",
-    "prettier": "^3.0.0",
     "react": "18.2.0",
     "react-native": "0.72.3",
     "react-native-gesture-handler": "~2.12.0",
     "react-native-reanimated": "~3.3.0",
     "react-native-svg": "13.9.0",
-    "styled-components": "^6.0.4",
+    "recoil": "^0.7.7",
+    "styled-components": "^6.0.5",
     "styled-components-react-native": "^1.0.0"
   },
   "devDependencies": {
@@ -48,7 +52,12 @@
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
     "eslint": "^8.45.0",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-native": "^4.0.0",
+    "prettier": "^3.0.0",
     "typescript": "^5.1.3"
   },
   "overrides": {
