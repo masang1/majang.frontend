@@ -1,9 +1,10 @@
-import { TouchableOpacity, View, ActivityIndicator, Text } from 'react-native';
+import { View, Text } from 'react-native';
+
 import * as S from './styled';
 
 export interface ButtonProps {
   content: string;
-  onClick: any;
+  onClick: () => void;
   isDisabled?: boolean;
 }
 

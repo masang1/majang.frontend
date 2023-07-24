@@ -1,5 +1,6 @@
-import { colors } from 'src/styles';
 import styled from 'styled-components/native';
+
+import { colors } from 'src/styles';
 
 export const AuthScreenContainer = styled.TouchableOpacity<{ tabOpen: boolean }>`
   flex: 1;

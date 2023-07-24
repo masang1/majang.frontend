@@ -1,16 +1,22 @@
-import React, { useState } from "react";
-import * as S from "./styled"
-import { SafeAreaView } from "react-native";
-import { colors } from "src/styles";
+import React, { useState } from 'react';
+
+import { colors } from 'src/styles';
+
+import * as S from './styled';
 
 export interface InputProps {
-    placeholder: string;
+  placeholder: string;
 }
 
 export const Input: React.FC<InputProps> = ({ placeholder }) => {
-    const [text, setText] = useState<string>("")
+  const [text, setText] = useState<string>('');
 
-    return (
-        <S.InputElement value={text} onChangeText={setText} placeholder={placeholder} placeholderTextColor={colors.placeHolder} />
-    )
-}
+  return (
+    <S.InputElement
+      value={text}
+      onChangeText={setText}
+      placeholder={placeholder}
+      placeholderTextColor={colors.placeHolder}
+    />
+  );
+};

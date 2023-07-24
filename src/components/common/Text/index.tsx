@@ -1,4 +1,5 @@
 import React from 'react';
+
 import * as S from './styled';
 
 export interface TextCommonProps {
@@ -15,7 +16,7 @@ export const TextColumnContainer: React.FC<TextColumnContainerProps> = ({ childr
 
 export const TextRowContainer: React.FC<TextCommonProps> = ({ children }) => {
   return <S.TextRowContainer>{children}</S.TextRowContainer>;
-}
+};
 
 interface TextProps extends TextCommonProps {
   size?: 'small' | 'large' | 'medium';
@@ -28,7 +29,7 @@ export const TextComponent: React.FC<TextProps> = ({
   isPrimary = false,
 }) => {
   return (
-    <S.TextElement size={size} isPrimary={isPrimary} >
+    <S.TextElement size={size} isPrimary={isPrimary}>
       {children}
     </S.TextElement>
   );

@@ -1,5 +1,7 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
+
+import { MaterialIcons } from '@expo/vector-icons';
+
 import { colors } from 'src/styles';
 
 export interface PrivacyListProps {

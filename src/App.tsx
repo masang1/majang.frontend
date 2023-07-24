@@ -1,10 +1,12 @@
+import { useState } from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AuthScreen, AuthStep1Screen, AuthStep2Screen, MainScreen } from './screens';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { useState } from 'react';
 import { RecoilRoot } from 'recoil';
+
+import { AuthScreen, AuthStep1Screen, AuthStep2Screen, MainScreen } from './screens';
 
 const Stack = createStackNavigator();
 
@@ -24,7 +26,7 @@ export default function App() {
   return isReady ? (
     <RecoilRoot>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='Auth'>
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Auth">
           <Stack.Screen name="Auth" component={AuthScreen} />
           <Stack.Screen name="AuthStep1" component={AuthStep1Screen} />
           <Stack.Screen name="AuthStep2" component={AuthStep2Screen} />
@@ -33,6 +35,6 @@ export default function App() {
       </NavigationContainer>
     </RecoilRoot>
   ) : (
-    <AppLoading startAsync={loadFonts} onFinish={() => setIsReady(true)} onError={() => { }} />
+    <AppLoading startAsync={loadFonts} onFinish={() => setIsReady(true)} onError={() => {}} />
   );
 }

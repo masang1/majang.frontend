@@ -1,6 +1,6 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 export const phoneState = atom({
-    key: 'phoneState',
-    default: ''
-})
+  key: 'phoneState',
+  default: '',
+});

@@ -1,6 +1,7 @@
-import { colors } from 'src/styles';
 import { css } from 'styled-components/native';
 import { styled } from 'styled-components/native';
+
+import { colors } from 'src/styles';
 
 export const TextColumnContainer = styled.View<{ isCenter?: boolean }>`
   flex-direction: column;

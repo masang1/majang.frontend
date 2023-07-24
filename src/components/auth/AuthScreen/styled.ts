@@ -1,5 +1,6 @@
-import { colors } from 'src/styles';
 import styled from 'styled-components/native';
+
+import { colors } from 'src/styles';
 
 export const AuthScreenWrapper = styled.View`
   flex: 1;
@@ -11,8 +12,8 @@ export const AuthScreenWrapper = styled.View`
 `;
 
 export const AuthScreenContainer = styled.View`
-    flex-direction: column;
-    row-gap: 14px;
-    align-items: flex-start;
-    justify-content: flex-start;
+  flex-direction: column;
+  row-gap: 14px;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;
