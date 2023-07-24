@@ -6,7 +6,7 @@ import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { RecoilRoot } from 'recoil';
 
-import { AuthScreen, AuthStep1Screen, AuthStep2Screen, MainScreen } from './screens';
+import { AuthStep1Screen, AuthStep2Screen, MainScreen, AuthScreen } from './screens';
 
 const Stack = createStackNavigator();
 
