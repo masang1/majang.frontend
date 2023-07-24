@@ -1,4 +1,5 @@
 import { WithLocalSvg } from 'react-native-svg';
+import { Platform } from 'react-native';
 
 import { styled } from 'styled-components/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,7 +9,7 @@ import { colors } from 'src/styles';
 export const HeaderContainer = styled.View`
   position: absolute;
   top: 0;
-  padding: 70px 22px 20px 22px;
+  padding: ${Platform.OS === 'android' ? '50px' : '70px'} 22px 20px 22px;
   width: 100%;
   flex-direction: row;
   align-items: center;
