@@ -10,7 +10,7 @@ import { PRIVACY_LIST } from 'src/constant';
 import { LogoSVG } from 'src/assets';
 import { Button, Text } from 'src/components';
 import { colors } from 'src/styles';
-import { CheckBoxOutlineSVG, CheckBoxSVG, CheckSVG } from 'src/assets/icons';
+import { CheckBlackSVG, CheckBoxOutlineSVG, CheckBoxSVG, CheckGraySVG } from 'src/assets/icons';
 
 import * as S from './styled';
 
@@ -139,8 +139,7 @@ export const AuthScreen: React.FC = () => {
                     <WithLocalSvg
                       width={22}
                       height={22}
-                      color={activeList[i] ? '#000' : colors.gray}
-                      asset={CheckSVG}
+                      asset={activeList[i] ? CheckBlackSVG : CheckGraySVG}
                     />
                   </TouchableOpacity>
                   {linkText && url ? (
