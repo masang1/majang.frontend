@@ -24,7 +24,7 @@ export const AuthScreen: React.FC = () => {
 
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const snapPoints = useMemo(() => ['33%', '33%'], []);
+  const snapPoints = useMemo(() => ['34%', '34%'], []);
 
   const onOpenLink = (url: string) => {
     Linking.openURL(url);
