@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 
 import { phoneState } from 'src/atom';
 import { AuthScreen, Text } from 'src/components';
+import { colors } from 'src/styles';
 
 import * as S from './styled';
 
@@ -30,13 +31,21 @@ export const AuthStep2Screen: React.FC = () => {
       isDisabled={verificationCode.length !== 6}
     >
       <Text.Column>
-        <Text size="large">인증번호 입력</Text>
+        <Text size={30} weight={700}>
+          인증번호 입력
+        </Text>
         <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-          <Text>{phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}로 인증번호를 보냈어요.</Text>
+          <Text size={15} weight={500}>
+            {phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}로 인증번호를 보냈어요.
+          </Text>
           <Text.Row>
-            <Text>인증번호가 오지 않나요?</Text>
+            <Text size={15} weight={500}>
+              인증번호가 오지 않나요?
+            </Text>
             <TouchableOpacity activeOpacity={0.5} onPress={handleResendCode}>
-              <Text isPrimary={true}>재전송하기</Text>
+              <Text size={15} weight={500} color={colors.primary}>
+                재전송하기
+              </Text>
             </TouchableOpacity>
           </Text.Row>
         </View>
@@ -45,6 +54,7 @@ export const AuthStep2Screen: React.FC = () => {
         <S.AuthStep2ScreenInputContainer>
           {[...Array(3)].map((_, index) => (
             <S.AuthStep2ScreenInput
+              keyboardType="numeric"
               key={index}
               maxLength={1}
               value={verificationCode[index] || ''}
@@ -55,6 +65,7 @@ export const AuthStep2Screen: React.FC = () => {
         <S.AuthStep2ScreenInputContainer>
           {[...Array(3)].map((_, index) => (
             <S.AuthStep2ScreenInput
+              keyboardType="numeric"
               key={index + 3}
               maxLength={1}
               value={verificationCode[index + 3] || ''}

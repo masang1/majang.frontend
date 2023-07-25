@@ -19,17 +19,14 @@ export const TextRowContainer: React.FC<TextCommonProps> = ({ children }) => {
 };
 
 interface TextProps extends TextCommonProps {
-  size?: 'small' | 'large' | 'medium';
-  isPrimary?: boolean;
+  size: number;
+  weight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+  color?: string;
 }
 
-export const TextComponent: React.FC<TextProps> = ({
-  children,
-  size = 'medium',
-  isPrimary = false,
-}) => {
+export const TextComponent: React.FC<TextProps> = ({ children, size, weight, color }) => {
   return (
-    <S.TextElement size={size} isPrimary={isPrimary}>
+    <S.TextElement size={size} weight={weight} color={color}>
       {children}
     </S.TextElement>
   );

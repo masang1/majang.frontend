@@ -5,8 +5,8 @@ import { colors } from 'src/styles';
 export const AuthScreenContainer = styled.TouchableOpacity<{ tabOpen: boolean }>`
   flex: 1;
   z-index: 10;
-  background-color: ${({ tabOpen }) => (tabOpen ? colors.gray : colors.white)};
   padding: 0 20px;
+  background-color: ${({ tabOpen }) => (tabOpen ? colors.gray : colors.white)};
 `;
 
 export const AuthScreenMainSection = styled.View`
@@ -37,12 +37,12 @@ export const AuthScreenBottomTextContainer = styled.View`
   margin: 10px;
 `;
 
-export const PrivacyTabContentContainer = styled.View`
+export const PrivacyTabContentContainer = styled.TouchableOpacity`
   flex: 1;
   flex-direction: column;
   justify-content: flex-start;
-  row-gap: 24px;
-  padding: 10px 20px 40px 20px;
+  row-gap: 18px;
+  padding: 10px 20px 0px 20px;
 `;
 
 export const PrivacyTabContentTitle = styled.Text`

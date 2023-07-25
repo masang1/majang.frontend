@@ -1,5 +1,5 @@
-import { css } from 'styled-components/native';
 import { styled } from 'styled-components/native';
+import { css } from 'styled-components/native';
 
 import { colors } from 'src/styles';
 
@@ -17,25 +17,36 @@ export const TextRowContainer = styled.View`
   column-gap: 5px;
 `;
 
-export const TextElement = styled.Text<{ size: string; isPrimary?: boolean }>`
+export const TextElement = styled.Text<{ size: number; weight?: number; color?: string }>`
   color: ${colors.black};
-  ${({ size, isPrimary }) => {
-    switch (size) {
-      case 'large':
+  font-size: ${({ size }) => `${size}px`};
+  color: ${({ color }) => (color ? color : colors.black)};
+  ${({ weight }) => {
+    switch (weight) {
+      case 100 | 200 | 300 | 400:
         return css`
-          font-size: 30px;
-          font-weight: 700;
-        `;
-      case 'small':
-        return css`
-          font-size: 12px;
           font-weight: 400;
+          font-family: 'SpoqahanSansNeo_Thin', 'sans-serif';
+        `;
+      case 600:
+        return css`
+          font-weight: 600;
+          font-family: 'SpoqahanSansNeo_Regular', 'sans-serif';
+        `;
+      case 700:
+        return css`
+          font-weight: 700;
+          font-family: 'SpoqahanSansNeo_Medium', 'sans-serif';
+        `;
+      case 800:
+        return css`
+          font-weight: 800;
+          font-family: 'SpoqahanSansNeo_Bold', 'sans-serif';
         `;
       default:
         return css`
-          font-size: 15px;
           font-weight: 500;
-          color: ${isPrimary ? colors.primary : colors.black};
+          font-family: 'SpoqahanSansNeo_Light', 'sans-serif';
         `;
     }
   }}
