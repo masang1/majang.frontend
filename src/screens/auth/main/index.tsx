@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Linking, TouchableOpacity, View } from 'react-native';
 import { WithLocalSvg } from 'react-native-svg';
 
@@ -43,7 +43,7 @@ export const AuthScreen: React.FC = () => {
         setAllActive(false);
       }
     } else {
-      if (Object.values(activeList).every((v) => v === true)) {
+      if (Object.values(activeList).every((v, i) => i !== 2 && v === true)) {
         setActiveList([false, false, false]);
         setAllActive(false);
       } else {
@@ -64,8 +64,13 @@ export const AuthScreen: React.FC = () => {
     bottomSheetRef.current?.expand();
   };
 
-  useMemo(() => {
-    if (Object.values(activeList).every((v) => v === true)) {
+  useEffect(() => {
+    const thirdValueFalse = Object.values(activeList)[2] === false;
+    const firstValueTrue = Object.values(activeList)[0] === true;
+    const secondValueTrue = Object.values(activeList)[1] === true;
+    const allValuesTrue = Object.values(activeList).every((v) => v === true);
+
+    if ((thirdValueFalse && firstValueTrue && secondValueTrue) || allValuesTrue) {
       setAllActive(true);
     } else {
       setAllActive(false);
