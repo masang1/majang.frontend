@@ -41,7 +41,7 @@ export const PrivacyTabContentContainer = styled.TouchableOpacity`
   flex: 1;
   flex-direction: column;
   justify-content: center;
-  row-gap: 24px;
+  row-gap: 20px;
   padding: 0px 20px;
 `;
 
@@ -66,5 +66,5 @@ export const PrivacyTabContentText = styled.Text<{ isActive?: boolean; isLinked?
 `;
 
 export const PrivacyTabContent = styled.View`
-  row-gap: 12px;
+  row-gap: 10px;
 `;

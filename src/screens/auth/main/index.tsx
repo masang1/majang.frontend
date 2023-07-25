@@ -10,7 +10,7 @@ import { PRIVACY_LIST } from 'src/constant';
 import { LogoSVG } from 'src/assets';
 import { Button, Text } from 'src/components';
 import { colors } from 'src/styles';
-import { CheckBoxOutlineSVG, CheckBoxSVG } from 'src/assets/icons';
+import { CheckBoxOutlineSVG, CheckBoxSVG, CheckSVG } from 'src/assets/icons';
 
 import * as S from './styled';
 
@@ -133,10 +133,15 @@ export const AuthScreen: React.FC = () => {
                 </TouchableOpacity>
                 <S.PrivacyTabContentText isActive={true}>모두 동의</S.PrivacyTabContentText>
               </S.PrivacyTabContentWrapper>
-              {PRIVACY_LIST.map(({ text, icon, linkText, url, activeIcon }, i) => (
+              {PRIVACY_LIST.map(({ text, linkText, url }, i) => (
                 <S.PrivacyTabContentWrapper onPress={() => onActive(i)} activeOpacity={1}>
                   <TouchableOpacity activeOpacity={0.5} onPress={() => onActive(i)}>
-                    {activeList[i] ? activeIcon : icon}
+                    <WithLocalSvg
+                      width={22}
+                      height={22}
+                      color={activeList[i] ? '#000' : colors.gray}
+                      asset={CheckSVG}
+                    />
                   </TouchableOpacity>
                   {linkText && url ? (
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
