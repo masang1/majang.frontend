@@ -93,7 +93,7 @@ export const AuthScreen: React.FC = () => {
               이미 계정이 있으신가요?
             </Text>
             <TouchableOpacity onPress={() => navigate('Login')} activeOpacity={0.5}>
-              <Text size={15} weight={500} color={colors.primary}>
+              <Text size={15} weight={600} color={colors.primary}>
                 로그인
               </Text>
             </TouchableOpacity>

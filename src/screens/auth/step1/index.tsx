@@ -25,7 +25,7 @@ export const AuthStep1Screen: React.FC = () => {
     >
       <Text.Column>
         <Text size={30} weight={700}>
-          휴대폰 인증"
+          휴대폰 인증
         </Text>
         <Text size={15} weight={500}>
           마법의 장터에서는 휴대폰 번호로 로그인해요. {`\n`}
