@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Linking, TouchableOpacity, View } from 'react-native';
 import { WithLocalSvg } from 'react-native-svg';
+import { Easing } from 'react-native-reanimated';
 
-import BottomSheet from '@gorhom/bottom-sheet';
+import BottomSheet, { useBottomSheetTimingConfigs } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
 
 import { PRIVACY_LIST } from 'src/constant';
@@ -54,15 +55,22 @@ export const AuthScreen: React.FC = () => {
   };
 
   const handleClosePress = () => {
-    setPrivacyTab(false);
     bottomSheetRef.current?.close();
+    setTimeout(() => {
+      setPrivacyTab(false);
+      setShowTab(false);
+    }, 70);
   };
 
   const handleOpenPress = () => {
     setPrivacyTab(true);
     setShowTab(true);
-    bottomSheetRef.current?.expand();
   };
+
+  const animationConfigs = useBottomSheetTimingConfigs({
+    duration: 300,
+    easing: Easing.out(Easing.exp),
+  });
 
   useEffect(() => {
     const thirdValueFalse = Object.values(activeList)[2] === false;
@@ -109,8 +117,8 @@ export const AuthScreen: React.FC = () => {
         <BottomSheet
           ref={bottomSheetRef}
           snapPoints={snapPoints}
-          index={1}
           handleComponent={() => null}
+          animationConfigs={animationConfigs}
         >
           <S.PrivacyTabContentContainer activeOpacity={1} onPress={handleOpenPress}>
             <S.PrivacyTabContentTitle>이용 약관</S.PrivacyTabContentTitle>
