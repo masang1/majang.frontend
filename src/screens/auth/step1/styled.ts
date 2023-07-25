@@ -14,6 +14,5 @@ export const AuthStep1ScreenInput = styled(TextInput)`
   height: 48px;
   padding: 0px 16px;
   border-radius: 12px;
-  backdrop-filter: blur(16px);
   background-color: #f4f4f5;
 `;

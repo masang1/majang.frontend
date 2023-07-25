@@ -1,16 +1,30 @@
 import React, { useRef, useState } from 'react';
 import { TextInput } from 'react-native';
+import { Controller, useForm } from 'react-hook-form';
 
 import { useSetRecoilState } from 'recoil';
+import { useNavigation } from '@react-navigation/native';
 
-import { AuthScreen, Text } from 'src/components';
+import { AuthScreen, Button, Text } from 'src/components';
 import { phoneState } from 'src/atom';
+import { colors } from 'src/styles';
 
 import * as S from './styled';
 
+export interface AuthValues {
+  phone: string;
+}
+
 export const AuthStep1Screen: React.FC = () => {
-  const [text, setText] = useState<string>('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm<AuthValues>();
+  const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const textInputRef = useRef<TextInput>(null);
+  const navigate = useNavigation().navigate as (s: string) => void;
   const setPhone = useSetRecoilState(phoneState);
 
   const onNotFocus = () => {
@@ -18,17 +32,22 @@ export const AuthStep1Screen: React.FC = () => {
   };
 
   const onTextChange = (text: string) => {
-    setText(text);
+    setIsDisabled(text.length !== 11);
     setPhone(text);
+  };
+
+  const onSubmit = ({ phone }: AuthValues) => {
+    console.log(phone, 'qwer');
+    navigate('AuthStep2');
   };
 
   return (
     <S.AuthStep1ScreenContainer onPress={onNotFocus} activeOpacity={1}>
       <AuthScreen
-        isDisabled={text.length !== 11}
-        buttonText="계속"
         prevUrl="Auth"
-        nextUrl="AuthStep2"
+        button={
+          <Button content={'계속'} onClick={handleSubmit(onSubmit)} isDisabled={isDisabled} />
+        }
       >
         <Text.Column>
           <Text size={30} weight={800}>
@@ -39,13 +58,31 @@ export const AuthStep1Screen: React.FC = () => {
             휴대폰 번호는 안전하게 보관되며, 함부로 공개되지 않아요.
           </Text>
         </Text.Column>
-        <S.AuthStep1ScreenInput
-          ref={textInputRef}
-          keyboardType="numeric"
-          value={text}
-          onChangeText={onTextChange}
-          placeholder="전화번호를 입력해주세요"
+        <Controller
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <S.AuthStep1ScreenInput
+              placeholder="휴대폰 번호를 입력해주세요."
+              onChangeText={(text: string) => {
+                onTextChange(text);
+                onChange(text);
+              }}
+              value={value}
+              keyboardType="numeric"
+              maxLength={11}
+              {...register('phone', {
+                pattern: {
+                  value: /01[0-1, 7][0-9]{7,8}$/,
+                  message: '전화번호 형식이 올바르지 않습니다.',
+                },
+              })}
+            />
+          )}
+          name="phone"
         />
+        <Text size={15} weight={600} color={colors.red}>
+          {errors.phone?.message}
+        </Text>
       </AuthScreen>
     </S.AuthStep1ScreenContainer>
   );
