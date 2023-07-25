@@ -1,9 +1,3 @@
-import React from 'react';
-
-import { MaterialIcons } from '@expo/vector-icons';
-
-import { colors } from 'src/styles';
-
 export interface PrivacyListProps {
   text?: string;
   linkText?: string;

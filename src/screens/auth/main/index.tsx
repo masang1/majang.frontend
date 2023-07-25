@@ -93,7 +93,7 @@ export const AuthScreen: React.FC = () => {
           <Text size={30} weight={800}>
             마법의 장터
           </Text>
-          <Text size={15} weight={600 }>
+          <Text size={15} weight={600}>
             나만의 취미 상품 장터, 마법의 장터
           </Text>
         </Text.Column>

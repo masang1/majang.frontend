@@ -1,4 +1,3 @@
-import { View } from 'react-native';
 import { Text } from 'src/components';
 import { colors } from 'src/styles';
 
@@ -18,7 +17,9 @@ export const Button: React.FC<ButtonProps> = ({ content, onClick, isDisabled }) 
       activeOpacity={isDisabled ? 1 : 0.5}
     >
       <Text.Row>
-        <Text weight={800} size={17} color={colors.white}>{content}</Text>
+        <Text weight={800} size={17} color={colors.white}>
+          {content}
+        </Text>
       </Text.Row>
     </S.ButtonContainer>
   );
