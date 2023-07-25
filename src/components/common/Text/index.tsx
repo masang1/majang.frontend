@@ -19,8 +19,8 @@ export const TextRowContainer: React.FC<TextCommonProps> = ({ children }) => {
 };
 
 interface TextProps extends TextCommonProps {
-  size: string;
-  weight: number;
+  size: number;
+  weight: 400 | 500 | 600 | 700 | 800 | 900;
   color?: string;
 }
 
