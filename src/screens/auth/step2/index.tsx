@@ -51,15 +51,15 @@ export const AuthStep2Screen: React.FC = () => {
             인증번호 입력
           </Text>
           <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-            <Text size={15} weight={500}>
+            <Text size={15} weight={600}>
               {phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}로 인증번호를 보냈어요.
             </Text>
             <Text.Row>
-              <Text size={15} weight={500}>
+              <Text size={15} weight={600}>
                 인증번호가 오지 않나요?
               </Text>
               <TouchableOpacity activeOpacity={0.5} onPress={handleResendCode}>
-                <Text size={15} weight={500} color={colors.primary}>
+                <Text size={15} weight={600} color={colors.primary}>
                   재전송하기
                 </Text>
               </TouchableOpacity>
