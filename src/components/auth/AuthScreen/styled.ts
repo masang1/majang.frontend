@@ -7,10 +7,11 @@ import { colors } from 'src/styles';
 export const AuthScreenWrapper = styled.KeyboardAvoidingView`
   flex: 1;
   z-index: 10;
-  padding: 70px 20px ${Platform.OS === 'android' ? '20px' : '30px'} 20px;
+  padding: 70px 20px 0px 20px;
   flex-direction: column;
   justify-content: space-between;
   background-color: ${colors.white};
+  margin-bottom: ${Platform.OS === 'android' ? '20px' : '30px'};
 `;
 
 export const AuthScreenContainer = styled.View`
