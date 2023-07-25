@@ -18,28 +18,15 @@ export const TextRowContainer: React.FC<TextCommonProps> = ({ children }) => {
   return <S.TextRowContainer>{children}</S.TextRowContainer>;
 };
 
-export enum TextFamily {
-  /** 400 */
-  Thin = 'SpoqahanSansNeo_Thin',
-  /** 500 */
-  Light = 'SpoqahanSansNeo_Light',
-  /** 600 */
-  Regular = 'SpoqahanSansNeo_Regular',
-  /** 700 */
-  Medium = 'SpoqahanSansNeo_Medium',
-  /** 800 */
-  Bold = 'SpoqahanSansNeo_Bold',
-}
-
 interface TextProps extends TextCommonProps {
   size: number;
-  family: TextFamily;
+  weight: 400 | 500 | 600 | 700 | 800 | 900;
   color?: string;
 }
 
-export const TextComponent: React.FC<TextProps> = ({ children, size, family, color }) => {
+export const TextComponent: React.FC<TextProps> = ({ children, size, weight, color }) => {
   return (
-    <S.TextElement size={size} family={family} color={color}>
+    <S.TextElement size={size} weight={weight} color={color}>
       {children}
     </S.TextElement>
   );

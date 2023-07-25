@@ -4,7 +4,7 @@ import { TouchableOpacity, View } from 'react-native';
 import { useRecoilValue } from 'recoil';
 
 import { phoneState } from 'src/atom';
-import { AuthScreen, Text, TextFamily } from 'src/components';
+import { AuthScreen, Text } from 'src/components';
 import { colors } from 'src/styles';
 
 import * as S from './styled';
@@ -31,19 +31,19 @@ export const AuthStep2Screen: React.FC = () => {
       isDisabled={verificationCode.length !== 6}
     >
       <Text.Column>
-        <Text size={30} family={TextFamily.Medium}>
+        <Text size={30} weight={700}>
           인증번호 입력
         </Text>
         <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-          <Text size={15} family={TextFamily.Light}>
+          <Text size={15} weight={500}>
             {phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}로 인증번호를 보냈어요.
           </Text>
           <Text.Row>
-            <Text size={15} family={TextFamily.Light}>
+            <Text size={15} weight={500}>
               인증번호가 오지 않나요?
             </Text>
             <TouchableOpacity activeOpacity={0.5} onPress={handleResendCode}>
-              <Text size={15} family={TextFamily.Regular} color={colors.primary}>
+              <Text size={15} weight={500} color={colors.primary}>
                 재전송하기
               </Text>
             </TouchableOpacity>

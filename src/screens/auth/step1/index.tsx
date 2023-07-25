@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useSetRecoilState } from 'recoil';
 
-import { AuthScreen, Text, TextFamily } from 'src/components';
+import { AuthScreen, Text } from 'src/components';
 import { phoneState } from 'src/atom';
 
 import * as S from './styled';
@@ -24,10 +24,10 @@ export const AuthStep1Screen: React.FC = () => {
       nextUrl="AuthStep2"
     >
       <Text.Column>
-        <Text size={30} family={TextFamily.Medium}>
+        <Text size={30} weight={700}>
           휴대폰 인증
         </Text>
-        <Text size={15} family={TextFamily.Light}>
+        <Text size={15} weight={500}>
           마법의 장터에서는 휴대폰 번호로 로그인해요. {`\n`}
           휴대폰 번호는 안전하게 보관되며, 함부로 공개되지 않아요.
         </Text>
