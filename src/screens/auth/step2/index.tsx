@@ -4,7 +4,7 @@ import { TouchableOpacity, View, TextInput } from 'react-native';
 import { useRecoilValue } from 'recoil';
 
 import { phoneState } from 'src/atom';
-import { AuthScreen, Text } from 'src/components';
+import { AuthScreen, Button, Text } from 'src/components';
 import { colors } from 'src/styles';
 
 import * as S from './styled';
@@ -18,8 +18,11 @@ export const AuthStep2Screen: React.FC = () => {
     const updatedCode = verificationCode.split('');
     updatedCode[index] = text;
     setVerificationCode(updatedCode.join(''));
-    if (text.length !== 0 && text.length < 6) {
+    if (text.length !== 0 && index < 5) {
       textInputRef.current[index + 1].focus();
+    }
+    if (text.length === 0 && index > 0) {
+      textInputRef.current[index - 1].focus();
     }
   };
 
@@ -34,10 +37,14 @@ export const AuthStep2Screen: React.FC = () => {
   return (
     <S.AuthStep2ScreenContainer onPress={() => handleBlur()} activeOpacity={1}>
       <AuthScreen
-        buttonText="계속"
         prevUrl="AuthStep1"
-        nextUrl="Main"
-        isDisabled={verificationCode.length !== 6}
+        button={
+          <Button
+            content={'계속'}
+            onClick={() => console.log('onClicked')}
+            isDisabled={verificationCode.length !== 6}
+          />
+        }
       >
         <Text.Column>
           <Text size={30} weight={700}>

@@ -31,6 +31,5 @@ export const AuthStep2ScreenInput = styled(TextInput)`
   padding: 0px 16px;
   border-radius: 12px;
   font-size: 20px;
-  backdrop-filter: blur(16px);
   background-color: #f4f4f5;
 `;
