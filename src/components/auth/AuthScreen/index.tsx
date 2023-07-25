@@ -25,7 +25,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({
   const navigate = useNavigation().navigate as (s: string) => void;
 
   return (
-    <S.AuthScreenWrapper behavior="padding" keyboardVerticalOffset={5}>
+    <S.AuthScreenWrapper behavior="padding" keyboardVerticalOffset={15}>
       <S.AuthScreenContainer>
         <Entypo
           name="chevron-thin-left"

@@ -1,4 +1,13 @@
+import { TextInput } from 'react-native';
+
 import { styled } from 'styled-components/native';
+
+import { colors } from 'src/styles';
+
+export const AuthStep2ScreenContainer = styled.TouchableOpacity`
+  flex: 1;
+  background-color: ${colors.white};
+`;
 
 export const AuthStep2ScreenInputSection = styled.View`
   margin-top: 10px;
@@ -16,7 +25,7 @@ export const AuthStep2ScreenInputContainer = styled.View`
   column-gap: 10px;
 `;
 
-export const AuthStep2ScreenInput = styled.TextInput`
+export const AuthStep2ScreenInput = styled(TextInput)`
   width: 47px;
   height: 67px;
   padding: 0px 16px;
