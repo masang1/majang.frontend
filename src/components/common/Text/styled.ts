@@ -1,4 +1,3 @@
-import { css } from 'styled-components/native';
 import { styled } from 'styled-components/native';
 
 import { colors } from 'src/styles';
@@ -17,26 +16,9 @@ export const TextRowContainer = styled.View`
   column-gap: 5px;
 `;
 
-export const TextElement = styled.Text<{ size: string; isPrimary?: boolean }>`
+export const TextElement = styled.Text<{ size: string; weight: number; color?: string }>`
   color: ${colors.black};
-  ${({ size, isPrimary }) => {
-    switch (size) {
-      case 'large':
-        return css`
-          font-size: 30px;
-          font-weight: 700;
-        `;
-      case 'small':
-        return css`
-          font-size: 12px;
-          font-weight: 400;
-        `;
-      default:
-        return css`
-          font-size: 15px;
-          font-weight: 500;
-          color: ${isPrimary ? colors.primary : colors.black};
-        `;
-    }
-  }}
+  font-size: ${({ size }) => size};
+  font-weight: ${({ weight }) => weight};
+  color: ${({ color }) => (color ? color : colors.black)};
 `;
