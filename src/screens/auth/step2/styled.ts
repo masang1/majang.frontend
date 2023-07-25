@@ -15,7 +15,7 @@ export const AuthStep2ScreenInputSection = styled.View`
   align-items: center;
   justify-content: space-between;
   align-self: center;
-  width: 100%;
+  width: 360px;
 `;
 
 export const AuthStep2ScreenInputContainer = styled.View`
