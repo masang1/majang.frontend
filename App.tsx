@@ -6,7 +6,7 @@ import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { RecoilRoot } from 'recoil';
 
-import { AuthStep1Screen, AuthStep2Screen, MainScreen, AuthScreen } from './screens';
+import { AuthStep1Screen, AuthStep2Screen, MainScreen, AuthScreen } from './src/screens';
 
 const Stack = createStackNavigator();
 
@@ -15,11 +15,11 @@ export default function App() {
 
   const loadFonts = async () => {
     await Font.loadAsync({
-      SpoqahanSansNeo_Thin: require('./assets/fonts/SpoqaHanSansNeo-Thin.ttf'),
-      SpoqahanSansNeo_Light: require('./assets/fonts/SpoqaHanSansNeo-Light.ttf'),
-      SpoqahanSansNeo_Regular: require('./assets/fonts/SpoqaHanSansNeo-Regular.ttf'),
-      SpoqahanSansNeo_Medium: require('./assets/fonts/SpoqaHanSansNeo-Medium.ttf'),
-      SpoqahanSansNeo_Bold: require('./assets/fonts/SpoqaHanSansNeo-Bold.ttf'),
+      SpoqahanSansNeo_Thin: require('./src/assets/fonts/SpoqaHanSansNeo-Thin.ttf'),
+      SpoqahanSansNeo_Light: require('./src/assets/fonts/SpoqaHanSansNeo-Light.ttf'),
+      SpoqahanSansNeo_Regular: require('./src/assets/fonts/SpoqaHanSansNeo-Regular.ttf'),
+      SpoqahanSansNeo_Medium: require('./src/assets/fonts/SpoqaHanSansNeo-Medium.ttf'),
+      SpoqahanSansNeo_Bold: require('./src/assets/fonts/SpoqaHanSansNeo-Bold.ttf'),
     });
   };
 
