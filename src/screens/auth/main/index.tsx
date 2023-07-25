@@ -77,10 +77,10 @@ export const AuthScreen: React.FC = () => {
       <S.AuthScreenMainSection>
         <WithLocalSvg width={100} height={100} asset={LogoSVG} />
         <Text.Column isCenter={true}>
-          <Text size={30} weight={700}>
+          <Text size={30} weight={800}>
             마법의 장터
           </Text>
-          <Text size={15} weight={500}>
+          <Text size={15} weight={600 }>
             나만의 취미 상품 장터, 마법의 장터
           </Text>
         </Text.Column>
@@ -89,11 +89,11 @@ export const AuthScreen: React.FC = () => {
         <Button content="시작하기" onClick={handleOpenPress} />
         <S.AuthScreenBottomTextContainer>
           <Text.Row>
-            <Text size={15} weight={500}>
+            <Text size={15} weight={700} color={colors.gray}>
               이미 계정이 있으신가요?
             </Text>
             <TouchableOpacity onPress={() => navigate('Login')} activeOpacity={0.5}>
-              <Text size={15} weight={600} color={colors.primary}>
+              <Text size={15} weight={800} color={colors.black}>
                 로그인
               </Text>
             </TouchableOpacity>

@@ -25,28 +25,23 @@ export const TextElement = styled.Text<{ size: number; weight?: number; color?: 
     switch (weight) {
       case 100 | 200 | 300 | 400:
         return css`
-          font-weight: 400;
-          font-family: 'SpoqahanSansNeo_Thin', 'sans-serif';
+          font-family: 'SpoqahanSansNeo_Thin';
         `;
       case 600:
         return css`
-          font-weight: 600;
-          font-family: 'SpoqahanSansNeo_Regular', 'sans-serif';
+          font-family: 'SpoqahanSansNeo_Regular';
         `;
       case 700:
         return css`
-          font-weight: 700;
-          font-family: 'SpoqahanSansNeo_Medium', 'sans-serif';
+          font-family: 'SpoqahanSansNeo_Medium';
         `;
       case 800:
         return css`
-          font-weight: 800;
-          font-family: 'SpoqahanSansNeo_Bold', 'sans-serif';
+          font-family: 'SpoqahanSansNeo_Bold';
         `;
       default:
         return css`
-          font-weight: 500;
-          font-family: 'SpoqahanSansNeo_Light', 'sans-serif';
+          font-family: 'SpoqahanSansNeo_Light';
         `;
     }
   }}
