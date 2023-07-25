@@ -1,4 +1,6 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { Text } from 'src/components';
+import { colors } from 'src/styles';
 
 import * as S from './styled';
 
@@ -15,16 +17,9 @@ export const Button: React.FC<ButtonProps> = ({ content, onClick, isDisabled }) 
       isDisabled={isDisabled}
       activeOpacity={isDisabled ? 1 : 0.5}
     >
-      <View
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'row',
-        }}
-      >
-        <Text style={{ color: '#fff', fontSize: 17, fontWeight: 'bold' }}>{content}</Text>
-      </View>
+      <Text.Row>
+        <Text weight={800} size={17} color={colors.white}>{content}</Text>
+      </Text.Row>
     </S.ButtonContainer>
   );
 };
