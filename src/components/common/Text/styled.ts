@@ -17,21 +17,16 @@ export const TextRowContainer = styled.View`
   column-gap: 5px;
 `;
 
-export const TextElement = styled.Text<{ size: number; weight: number; color?: string }>`
+export const TextElement = styled.Text<{ size: number; weight?: number; color?: string }>`
   color: ${colors.black};
   font-size: ${({ size }) => `${size}px`};
   color: ${({ color }) => (color ? color : colors.black)};
   ${({ weight }) => {
     switch (weight) {
-      case 400:
+      case 100 | 200 | 300 | 400:
         return css`
           font-weight: 400;
           font-family: 'SpoqahanSansNeo_Thin', 'sans-serif';
-        `;
-      case 500:
-        return css`
-          font-weight: 500;
-          font-family: 'SpoqahanSansNeo_Light', 'sans-serif';
         `;
       case 600:
         return css`
@@ -47,6 +42,11 @@ export const TextElement = styled.Text<{ size: number; weight: number; color?: s
         return css`
           font-weight: 800;
           font-family: 'SpoqahanSansNeo_Bold', 'sans-serif';
+        `;
+      default:
+        return css`
+          font-weight: 500;
+          font-family: 'SpoqahanSansNeo_Light', 'sans-serif';
         `;
     }
   }}
