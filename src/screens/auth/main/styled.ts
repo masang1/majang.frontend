@@ -59,7 +59,7 @@ export const PrivacyTabContentWrapper = styled.TouchableOpacity`
 
 export const PrivacyTabContentText = styled.Text<{ isActive?: boolean; isLinked?: boolean }>`
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   color: ${({ isActive }) => (isActive ? colors.black : colors.gray)};
   text-decoration: ${({ isLinked }) => (isLinked ? 'underline' : 'none')};
   text-decoration-color: ${({ isLinked }) => (isLinked ? colors.black : colors.gray)};
