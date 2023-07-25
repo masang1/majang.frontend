@@ -42,7 +42,7 @@ export const PrivacyTabContentContainer = styled.TouchableOpacity`
   flex-direction: column;
   justify-content: center;
   row-gap: 20px;
-  padding: 0px 20px;
+  padding: 0px 20px 20px 20px;
 `;
 
 export const PrivacyTabContentTitle = styled.Text`
