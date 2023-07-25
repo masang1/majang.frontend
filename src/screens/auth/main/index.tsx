@@ -23,7 +23,7 @@ export const AuthScreen: React.FC = () => {
 
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const snapPoints = useMemo(() => ['35%', '35%'], []);
+  const snapPoints = useMemo(() => ['36%', '36%'], []);
 
   const onOpenLink = (url: string) => {
     Linking.openURL(url);
@@ -101,42 +101,51 @@ export const AuthScreen: React.FC = () => {
         </S.AuthScreenBottomTextContainer>
       </S.AuthScreenBottomSection>
       {showTab && (
-        <BottomSheet ref={bottomSheetRef} snapPoints={snapPoints} index={1}>
+        <BottomSheet
+          ref={bottomSheetRef}
+          snapPoints={snapPoints}
+          index={1}
+          handleComponent={() => null}
+        >
           <S.PrivacyTabContentContainer activeOpacity={1} onPress={handleOpenPress}>
             <S.PrivacyTabContentTitle>이용 약관</S.PrivacyTabContentTitle>
-            <S.PrivacyTabContentWrapper onPress={onListToggle} activeOpacity={1}>
-              <TouchableOpacity activeOpacity={0.5} onPress={onListToggle}>
-                {allActive ? (
-                  <WithLocalSvg width={20} height={20} color="000" asset={CheckBoxSVG} />
-                ) : (
-                  <WithLocalSvg width={20} height={20} color="000" asset={CheckBoxOutlineSVG} />
-                )}
-              </TouchableOpacity>
-              <S.PrivacyTabContentText isActive={true}>모두 동의</S.PrivacyTabContentText>
-            </S.PrivacyTabContentWrapper>
-            {PRIVACY_LIST.map(({ text, icon, linkText, url, activeIcon }, i) => (
-              <S.PrivacyTabContentWrapper onPress={() => onActive(i)} activeOpacity={1}>
-                <TouchableOpacity activeOpacity={0.5} onPress={() => onActive(i)}>
-                  {activeList[i] ? activeIcon : icon}
+            <S.PrivacyTabContent>
+              <S.PrivacyTabContentWrapper onPress={onListToggle} activeOpacity={1}>
+                <TouchableOpacity activeOpacity={0.5} onPress={onListToggle}>
+                  {allActive ? (
+                    <WithLocalSvg width={20} height={20} color="000" asset={CheckBoxSVG} />
+                  ) : (
+                    <WithLocalSvg width={20} height={20} color="000" asset={CheckBoxOutlineSVG} />
+                  )}
                 </TouchableOpacity>
-                {linkText && url ? (
-                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <S.PrivacyTabContentText
-                      isActive={activeList[i]}
-                      onPress={() => onOpenLink(url)}
-                      isLinked={true}
-                    >
-                      {linkText}
-                    </S.PrivacyTabContentText>
+                <S.PrivacyTabContentText isActive={true}>모두 동의</S.PrivacyTabContentText>
+              </S.PrivacyTabContentWrapper>
+              {PRIVACY_LIST.map(({ text, icon, linkText, url, activeIcon }, i) => (
+                <S.PrivacyTabContentWrapper onPress={() => onActive(i)} activeOpacity={1}>
+                  <TouchableOpacity activeOpacity={0.5} onPress={() => onActive(i)}>
+                    {activeList[i] ? activeIcon : icon}
+                  </TouchableOpacity>
+                  {linkText && url ? (
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                      <S.PrivacyTabContentText
+                        isActive={activeList[i]}
+                        onPress={() => onOpenLink(url)}
+                        isLinked={true}
+                      >
+                        {linkText}
+                      </S.PrivacyTabContentText>
+                      <S.PrivacyTabContentText isActive={activeList[i]}>
+                        {text}
+                      </S.PrivacyTabContentText>
+                    </View>
+                  ) : (
                     <S.PrivacyTabContentText isActive={activeList[i]}>
                       {text}
                     </S.PrivacyTabContentText>
-                  </View>
-                ) : (
-                  <S.PrivacyTabContentText isActive={activeList[i]}>{text}</S.PrivacyTabContentText>
-                )}
-              </S.PrivacyTabContentWrapper>
-            ))}
+                  )}
+                </S.PrivacyTabContentWrapper>
+              ))}
+            </S.PrivacyTabContent>
             <Button
               content="계속하기"
               isDisabled={!allActive}

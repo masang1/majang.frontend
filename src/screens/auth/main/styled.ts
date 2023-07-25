@@ -40,9 +40,9 @@ export const AuthScreenBottomTextContainer = styled.View`
 export const PrivacyTabContentContainer = styled.TouchableOpacity`
   flex: 1;
   flex-direction: column;
-  justify-content: flex-start;
-  row-gap: 18px;
-  padding: 10px 20px 0px 20px;
+  justify-content: center;
+  row-gap: 24px;
+  padding: 0px 20px;
 `;
 
 export const PrivacyTabContentTitle = styled.Text`
@@ -63,4 +63,8 @@ export const PrivacyTabContentText = styled.Text<{ isActive?: boolean; isLinked?
   color: ${({ isActive }) => (isActive ? colors.black : colors.gray)};
   text-decoration: ${({ isLinked }) => (isLinked ? 'underline' : 'none')};
   text-decoration-color: ${({ isLinked }) => (isLinked ? colors.black : colors.gray)};
+`;
+
+export const PrivacyTabContent = styled.View`
+  row-gap: 12px;
 `;
