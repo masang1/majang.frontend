@@ -3,13 +3,13 @@ import { Linking, TouchableOpacity, View } from 'react-native';
 import { WithLocalSvg } from 'react-native-svg';
 
 import BottomSheet from '@gorhom/bottom-sheet';
-import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 import { PRIVACY_LIST } from 'src/constant';
 import { LogoSVG } from 'src/assets';
 import { Button, Text } from 'src/components';
 import { colors } from 'src/styles';
+import { CheckBoxOutlineSVG, CheckBoxSVG } from 'src/assets/icons';
 
 import * as S from './styled';
 
@@ -107,12 +107,12 @@ export const AuthScreen: React.FC = () => {
             <S.PrivacyTabContentWrapper onPress={onListToggle} activeOpacity={1}>
               <TouchableOpacity activeOpacity={0.5} onPress={onListToggle}>
                 {allActive ? (
-                  <MaterialIcons name={'check-box'} size={20} color="000" />
+                  <WithLocalSvg width={20} height={20} color="000" asset={CheckBoxSVG} />
                 ) : (
-                  <MaterialIcons name={'check-box-outline-blank'} size={20} color="000" />
+                  <WithLocalSvg width={20} height={20} color="000" asset={CheckBoxOutlineSVG} />
                 )}
               </TouchableOpacity>
-              <S.PrivacyTabContentText isActive={allActive}>모두 동의</S.PrivacyTabContentText>
+              <S.PrivacyTabContentText isActive={true}>모두 동의</S.PrivacyTabContentText>
             </S.PrivacyTabContentWrapper>
             {PRIVACY_LIST.map(({ text, icon, linkText, url, activeIcon }, i) => (
               <S.PrivacyTabContentWrapper onPress={() => onActive(i)} activeOpacity={1}>

@@ -26,7 +26,7 @@ export default function App() {
   return isReady ? (
     <RecoilRoot>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Main">
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Auth">
           <Stack.Screen name="Main" component={MainScreen} />
           <Stack.Screen name="Auth" component={AuthScreen} />
           <Stack.Screen name="AuthStep1" component={AuthStep1Screen} />
