@@ -6,4 +6,5 @@ export const colors = {
   primary: '#6788FF',
   glassBackground: 'rgba(244, 244, 245, 0.50)',
   placeHolder: '#5C5C5C',
+  red: '#CD5050',
 };
