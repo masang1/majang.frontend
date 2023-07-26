@@ -2,9 +2,11 @@ import { Platform } from 'react-native';
 
 import styled from 'styled-components/native';
 
+import { KeyboardAvoidingView, View } from 'react-native';
+
 import { colors } from 'src/styles';
 
-export const AuthScreenWrapper = styled.KeyboardAvoidingView`
+export const AuthScreenWrapper = styled(Platform.OS == "ios" ? KeyboardAvoidingView : View)`
   flex: 1;
   z-index: 10;
   padding: 70px 20px 0px 20px;
