@@ -1,5 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { TouchableOpacity, View, TextInput } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity, View } from 'react-native';
+import {
+  CodeField,
+  Cursor,
+  useBlurOnFulfill,
+  useClearByFocusCell,
+} from 'react-native-confirmation-code-field';
 
 import { useRecoilValue } from 'recoil';
 
@@ -9,13 +15,6 @@ import { colors } from 'src/styles';
 
 import * as S from './styled';
 
-import {
-  CodeField,
-  Cursor,
-  useBlurOnFulfill,
-  useClearByFocusCell,
-} from 'react-native-confirmation-code-field';
-
 const CELL_COUNT = 6;
 const CODE_VAILDATION_REGEX = /^\d{6}$/;
 
@@ -23,20 +22,19 @@ export const AuthStep2Screen: React.FC = () => {
   const phone = useRecoilValue(phoneState);
 
   const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
+  const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
 
   useEffect(() => {
-    console.log(value)
-  },[value])
+    console.log(value);
+  }, [value]);
 
   const handleResendCode = () => {
     // Handle resend code logic here
   };
-
 
   return (
     <S.AuthStep2ScreenContainer>
@@ -83,10 +81,8 @@ export const AuthStep2Screen: React.FC = () => {
               rootStyle={{
                 width: '100%',
               }}
-              renderCell={({index, symbol, isFocused}) => (
-                <S.AuthStep2ScreenInput
-                  key={index}
-                  onLayout={getCellOnLayoutHandler(index)}>
+              renderCell={({ index, symbol, isFocused }) => (
+                <S.AuthStep2ScreenInput key={index} onLayout={getCellOnLayoutHandler(index)}>
                   <Text size={20} weight={600}>
                     {symbol || (isFocused ? <Cursor /> : null)}
                   </Text>
