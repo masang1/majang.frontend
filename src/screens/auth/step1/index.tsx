@@ -43,7 +43,6 @@ export const AuthStep1Screen: React.FC = () => {
   return (
     <S.AuthStep1ScreenContainer onPress={onNotFocus} activeOpacity={1}>
       <AuthScreen
-        prevUrl="Auth"
         button={
           <Button content={'계속'} onClick={handleSubmit(onSubmit)} isDisabled={isDisabled} />
         }

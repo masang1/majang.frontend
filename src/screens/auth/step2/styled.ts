@@ -4,7 +4,7 @@ import { styled } from 'styled-components/native';
 
 import { colors } from 'src/styles';
 
-export const AuthStep2ScreenContainer = styled.TouchableOpacity`
+export const AuthStep2ScreenContainer = styled.View`
   flex: 1;
   background-color: ${colors.white};
 `;
@@ -23,6 +23,7 @@ export const AuthStep2ScreenInputContainer = styled.View`
   align-items: center;
   justify-content: space-between;
   column-gap: 10px;
+  width: 100%;
 `;
 
 export const AuthStep2ScreenInput = styled(TextInput)`

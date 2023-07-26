@@ -7,12 +7,11 @@ import * as S from './styled';
 
 export interface AuthScreenProps {
   children: React.ReactNode;
-  prevUrl: string;
   button: React.ReactNode;
 }
 
-export const AuthScreen: React.FC<AuthScreenProps> = ({ children, prevUrl, button }) => {
-  const navigate = useNavigation().navigate as (s: string) => void;
+export const AuthScreen: React.FC<AuthScreenProps> = ({ children, button }) => {
+  const navigator = useNavigation();
 
   return (
     <S.AuthScreenWrapper behavior="padding" keyboardVerticalOffset={15}>
@@ -22,7 +21,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ children, prevUrl, butto
           size={24}
           color="black"
           style={{ marginBottom: 10 }}
-          onPress={() => navigate(prevUrl)}
+          onPress={() => navigator.goBack()}
         />
         {children}
       </S.AuthScreenContainer>
