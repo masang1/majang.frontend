@@ -18,11 +18,15 @@ export const AuthStep2Screen: React.FC = () => {
     const updatedCode = verificationCode.split('');
     updatedCode[index] = text;
     setVerificationCode(updatedCode.join(''));
+
     if (text.length !== 0 && index < 5) {
-      textInputRef.current[index + 1].focus();
+      textInputRef.current[index + 1]?.focus();
     }
-    if (text.length === 0 && index > 0) {
-      textInputRef.current[index - 1].focus();
+  };
+
+  const handleBackspacePress = (index: number) => {
+    if (index > 0) {
+      textInputRef.current[index - 1]?.focus();
     }
   };
 
@@ -76,6 +80,11 @@ export const AuthStep2Screen: React.FC = () => {
                 maxLength={1}
                 value={verificationCode[index] || ''}
                 onChangeText={(text) => handleChange(index, text)}
+                onKeyPress={({ nativeEvent }) => {
+                  if (nativeEvent.key === 'Backspace') {
+                    handleBackspacePress(index);
+                  }
+                }}
               />
             ))}
           </S.AuthStep2ScreenInputContainer>
@@ -88,6 +97,11 @@ export const AuthStep2Screen: React.FC = () => {
                 maxLength={1}
                 value={verificationCode[index + 3] || ''}
                 onChangeText={(text) => handleChange(index + 3, text)}
+                onKeyPress={({ nativeEvent }) => {
+                  if (nativeEvent.key === 'Backspace') {
+                    handleBackspacePress(index + 3);
+                  }
+                }}
               />
             ))}
           </S.AuthStep2ScreenInputContainer>

@@ -37,7 +37,6 @@ export const AuthStep1Screen: React.FC = () => {
   };
 
   const onSubmit = ({ phone }: AuthValues) => {
-    console.log(phone, 'qwer');
     navigate('AuthStep2');
   };
 
