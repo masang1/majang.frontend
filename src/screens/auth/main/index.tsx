@@ -131,7 +131,7 @@ export const AuthScreen: React.FC = () => {
                     <WithLocalSvg width={20} height={20} color="000" asset={CheckBoxOutlineSVG} />
                   )}
                 </TouchableOpacity>
-                <S.PrivacyTabContentText isActive={true}>모두 동의</S.PrivacyTabContentText>
+                <S.PrivacyTabContentText isActive={allActive}>모두 동의</S.PrivacyTabContentText>
               </S.PrivacyTabContentWrapper>
               {PRIVACY_LIST.map(({ text, linkText, url }, i) => (
                 <S.PrivacyTabContentWrapper onPress={() => onActive(i)} activeOpacity={1} key={i}>

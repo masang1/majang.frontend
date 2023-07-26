@@ -23,6 +23,7 @@ export const AuthStep1Screen: React.FC = () => {
     control,
   } = useForm<AuthValues>();
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  const [text, setText] = useState<string>('');
   const textInputRef = useRef<TextInput>(null);
   const navigate = useNavigation().navigate as (s: string) => void;
   const setPhone = useSetRecoilState(phoneState);
@@ -39,9 +40,10 @@ export const AuthStep1Screen: React.FC = () => {
       if (numbers.indexOf(text[i]) > -1) {
         newText = newText + text[i];
       } else {
-        alert('please enter numbers only');
+        newText = newText.replace(text[i], '');
       }
     }
+    setText(newText);
     setIsDisabled(text.length !== 11);
     setPhone(text);
   };
@@ -68,14 +70,13 @@ export const AuthStep1Screen: React.FC = () => {
         </Text.Column>
         <Controller
           control={control}
-          render={({ field: { onChange, value } }) => (
+          render={() => (
             <S.AuthStep1ScreenInput
               placeholder="휴대폰 번호를 입력해주세요."
               onChangeText={(text: string) => {
                 onTextChange(text);
-                onChange(text);
               }}
-              value={value}
+              value={text}
               keyboardType="numeric"
               maxLength={11}
               {...register('phone', {
