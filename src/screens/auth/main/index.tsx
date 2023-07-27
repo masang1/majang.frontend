@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Linking, TouchableOpacity, View } from 'react-native';
 import { WithLocalSvg } from 'react-native-svg';
