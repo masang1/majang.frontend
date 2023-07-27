@@ -35,15 +35,21 @@ export const AuthStep2Screen: React.FC = () => {
   const onChangeText = (text: string) => {
     const newText = checkNumber(text);
     setValue(newText);
-    if (text.length === 6) {
-      onSubmit();
+    if (newText.length === 6) {
+      onSubmit(newText);
     }
   };
 
   const { mutate } = useAuth();
 
-  const onSubmit = () => {
-    mutate({ phone: prevPhone, code: value });
+  const onResend = () => {
+    setValue('');
+    mutate({ phone: prevPhone });
+    setAuth({ step2message: '' });
+  };
+
+  const onSubmit = (code: string) => {
+    mutate({ phone: prevPhone, code });
     setAuth({ step2message: '' });
   };
 
@@ -79,7 +85,7 @@ export const AuthStep2Screen: React.FC = () => {
               <Text size={15} weight={600}>
                 인증번호가 오지 않나요?
               </Text>
-              <TouchableOpacity activeOpacity={0.5} onPress={onSubmit}>
+              <TouchableOpacity activeOpacity={0.5} onPress={onResend}>
                 <Text size={15} weight={800} color={colors.black}>
                   재전송하기
                 </Text>

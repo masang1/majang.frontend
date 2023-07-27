@@ -14,7 +14,7 @@ export interface AuthValues {
 }
 
 export interface AuthResponse {
-  code: 'authorized' | 'code_sent' | 'invalid_code' | 'invalid_phone' | 'blocked' | 'user_notfound';
+  code: string;
   token?: string;
 }
 
