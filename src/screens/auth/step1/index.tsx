@@ -1,64 +1,53 @@
 import React, { useRef, useState } from 'react';
 import { TextInput } from 'react-native';
-import { Controller, useForm } from 'react-hook-form';
 
-import { useSetRecoilState } from 'recoil';
-import { useNavigation } from '@react-navigation/native';
+import { useRecoilState } from 'recoil';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { AuthScreen, Button, Text } from 'src/components';
-import { phoneState } from 'src/atom';
+import { AuthState } from 'src/atom';
 import { colors } from 'src/styles';
+import { useAuth } from 'src/hooks';
+import { checkNumber } from 'src/utils';
 
 import * as S from './styled';
 
-export interface AuthValues {
-  phone: string;
-}
-
 export const AuthStep1Screen: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    control,
-  } = useForm<AuthValues>();
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
-  const [text, setText] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
+  const [error, setError] = useState<string>('');
   const textInputRef = useRef<TextInput>(null);
-  const navigate = useNavigation().navigate as (s: string) => void;
-  const setPhone = useSetRecoilState(phoneState);
+  const [auth, setAuth] = useRecoilState(AuthState);
 
   const onNotFocus = () => {
     textInputRef.current?.blur();
   };
 
   const onTextChange = (text: string) => {
-    let newText = '';
-    const numbers = '0123456789';
+    const newText = checkNumber(text);
+    const numberRegex = /^010-?\d{4}-?\d{4}$/;
 
-    for (let i = 0; i < text.length; i++) {
-      if (numbers.indexOf(text[i]) > -1) {
-        newText = newText + text[i];
-      } else {
-        newText = newText.replace(text[i], '');
-      }
+    if (!numberRegex.test(newText)) {
+      setError('전화번호 형식이 올바르지 않습니다.');
+    } else {
+      setError('');
+      setIsDisabled(text.length !== 11);
+      setAuth({ phone: text });
     }
-    setText(newText);
-    setIsDisabled(text.length !== 11);
-    setPhone(text);
+    setPhone(newText);
   };
 
-  const onSubmit = ({ phone }: AuthValues) => {
-    navigate('AuthStep2');
+  const { mutate } = useAuth();
+
+  const onSubmit = async () => {
+    await AsyncStorage.setItem('phone', phone);
+    mutate({ phone: phone });
+    setAuth({ step1message: '' });
   };
 
   return (
     <S.AuthStep1ScreenContainer onPress={onNotFocus} activeOpacity={1}>
-      <AuthScreen
-        button={
-          <Button content={'계속'} onClick={handleSubmit(onSubmit)} isDisabled={isDisabled} />
-        }
-      >
+      <AuthScreen button={<Button content={'계속'} onClick={onSubmit} isDisabled={isDisabled} />}>
         <Text.Column>
           <Text size={30} weight={800}>
             휴대폰 인증
@@ -68,29 +57,17 @@ export const AuthStep1Screen: React.FC = () => {
             휴대폰 번호는 안전하게 보관되며, 함부로 공개되지 않아요.
           </Text>
         </Text.Column>
-        <Controller
-          control={control}
-          render={() => (
-            <S.AuthStep1ScreenInput
-              placeholder="휴대폰 번호를 입력해주세요."
-              onChangeText={(text: string) => {
-                onTextChange(text);
-              }}
-              value={text}
-              keyboardType="numeric"
-              maxLength={11}
-              {...register('phone', {
-                pattern: {
-                  value: /01[0-1, 7][0-9]{7,8}$/,
-                  message: '전화번호 형식이 올바르지 않습니다.',
-                },
-              })}
-            />
-          )}
-          name="phone"
+        <S.AuthStep1ScreenInput
+          placeholder="휴대폰 번호를 입력해주세요."
+          onChangeText={(text: string) => {
+            onTextChange(text);
+          }}
+          value={phone}
+          keyboardType="numeric"
+          maxLength={11}
         />
         <Text size={15} weight={600} color={colors.red}>
-          {errors.phone?.message}
+          {auth.step1message || error}
         </Text>
       </AuthScreen>
     </S.AuthStep1ScreenContainer>

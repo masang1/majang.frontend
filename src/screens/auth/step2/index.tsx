@@ -7,34 +7,60 @@ import {
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { phoneState } from 'src/atom';
+import { AuthState } from 'src/atom';
 import { AuthScreen, Button, Text } from 'src/components';
 import { colors } from 'src/styles';
+import { useAuth } from 'src/hooks';
+import { checkNumber } from 'src/utils';
 
 import * as S from './styled';
 
 const CELL_COUNT = 6;
-const CODE_VAILDATION_REGEX = /^\d{6}$/;
+const CODE_VALIDATION_REGEX = /^\d{6}$/;
 
 export const AuthStep2Screen: React.FC = () => {
-  const phone = useRecoilValue(phoneState);
+  const [auth, setAuth] = useRecoilState(AuthState);
 
   const [value, setValue] = useState('');
+  const [prevPhone, setPrevPhone] = useState<string>('');
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
 
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
-
-  const handleResendCode = () => {
-    // Handle resend code logic here
+  const onChangeText = (text: string) => {
+    const newText = checkNumber(text);
+    setValue(newText);
+    if (newText.length === 6) {
+      onSubmit(newText);
+    }
   };
+
+  const { mutate } = useAuth();
+
+  const onResend = () => {
+    setValue('');
+    mutate({ phone: prevPhone });
+    setAuth({ step2message: '' });
+  };
+
+  const onSubmit = (code: string) => {
+    mutate({ phone: prevPhone, code });
+    setAuth({ step2message: '' });
+  };
+
+  const loadPrevPhone = async () => {
+    const phone = await AsyncStorage.getItem('phone');
+    phone && setPrevPhone(phone);
+  };
+
+  useEffect(() => {
+    loadPrevPhone();
+  }, []);
 
   return (
     <S.AuthStep2ScreenContainer>
@@ -42,8 +68,8 @@ export const AuthStep2Screen: React.FC = () => {
         button={
           <Button
             content={'계속'}
-            onClick={() => console.log(value)}
-            isDisabled={!CODE_VAILDATION_REGEX.test(value)}
+            onClick={onSubmit}
+            isDisabled={!CODE_VALIDATION_REGEX.test(value)}
           />
         }
       >
@@ -53,13 +79,13 @@ export const AuthStep2Screen: React.FC = () => {
           </Text>
           <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>
             <Text size={15} weight={600}>
-              {phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}로 인증번호를 보냈어요.
+              {prevPhone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}로 인증번호를 보냈어요.
             </Text>
             <Text.Row>
               <Text size={15} weight={600}>
                 인증번호가 오지 않나요?
               </Text>
-              <TouchableOpacity activeOpacity={0.5} onPress={handleResendCode}>
+              <TouchableOpacity activeOpacity={0.5} onPress={onResend}>
                 <Text size={15} weight={800} color={colors.black}>
                   재전송하기
                 </Text>
@@ -73,7 +99,7 @@ export const AuthStep2Screen: React.FC = () => {
               ref={ref}
               {...props}
               value={value}
-              onChangeText={setValue}
+              onChangeText={onChangeText}
               cellCount={CELL_COUNT}
               caretHidden={true}
               keyboardType="number-pad"
@@ -91,6 +117,9 @@ export const AuthStep2Screen: React.FC = () => {
             />
           </S.AuthStep2ScreenInputContainer>
         </S.AuthStep2ScreenInputSection>
+        <Text size={15} weight={600} color={colors.red}>
+          {auth.step2message}
+        </Text>
       </AuthScreen>
     </S.AuthStep2ScreenContainer>
   );

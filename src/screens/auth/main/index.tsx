@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Linking, TouchableOpacity, View } from 'react-native';
 import { WithLocalSvg } from 'react-native-svg';
@@ -5,6 +6,7 @@ import { Easing } from 'react-native-reanimated';
 
 import BottomSheet, { useBottomSheetTimingConfigs } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
+// import { BASE_URL } from '@env';
 
 import { PRIVACY_LIST } from 'src/constant';
 import { LogoSVG } from 'src/assets';
