@@ -6,6 +6,7 @@ import { Easing } from 'react-native-reanimated';
 
 import BottomSheet, { useBottomSheetTimingConfigs } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
+// import { BASE_URL } from '@env';
 
 import { PRIVACY_LIST } from 'src/constant';
 import { LogoSVG } from 'src/assets';
@@ -85,6 +86,10 @@ export const AuthScreen: React.FC = () => {
       setAllActive(false);
     }
   }, [activeList]);
+
+  const BASE_URL = process.env.BASE_URL;
+
+  console.log(BASE_URL);
 
   return (
     <S.AuthScreenContainer tabOpen={privacyTab} activeOpacity={1} onPress={handleClosePress}>

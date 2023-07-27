@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { API_SUFFIX, instance } from './api';
 
 export const setAccessToken = (token: string | null) => {
@@ -9,7 +11,6 @@ export const setAccessToken = (token: string | null) => {
 };
 
 export interface AuthValues {
-  force: boolean;
   phone: string;
   code?: string;
 }
@@ -19,7 +20,19 @@ export interface AuthResponse {
   token?: string;
 }
 
-export const auth = async ({ force, phone, code }: AuthValues): Promise<AuthResponse> => {
-  const { data } = await instance.post(API_SUFFIX.AUTH, { force, phone, code });
+export const auth = async ({ phone, code }: AuthValues): Promise<AuthResponse> => {
+  const token = await AsyncStorage.getItem('token');
+  console.log(
+    code
+      ? { force: token ? true : false, phone: phone, code: code }
+      : { force: token ? true : false, phone: phone },
+    API_SUFFIX.BASEURL,
+  );
+  const { data } = await instance.post(API_SUFFIX.AUTH, {
+    ...(code
+      ? { force: token ? true : false, phone: phone, code: code }
+      : { force: token ? true : false, phone: phone }),
+  });
+  console.log(data, 'data');
   return data;
 };

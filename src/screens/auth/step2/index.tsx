@@ -9,7 +9,7 @@ import {
 
 import { useRecoilValue } from 'recoil';
 
-import { phoneState } from 'src/atom';
+import { AuthState } from 'src/atom';
 import { AuthScreen, Button, Text } from 'src/components';
 import { colors } from 'src/styles';
 
@@ -19,7 +19,7 @@ const CELL_COUNT = 6;
 const CODE_VAILDATION_REGEX = /^\d{6}$/;
 
 export const AuthStep2Screen: React.FC = () => {
-  const phone = useRecoilValue(phoneState);
+  const AuthPhone = useRecoilValue(AuthState);
 
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
@@ -53,7 +53,7 @@ export const AuthStep2Screen: React.FC = () => {
           </Text>
           <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>
             <Text size={15} weight={600}>
-              {phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}로 인증번호를 보냈어요.
+              {AuthPhone.phone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}로 인증번호를 보냈어요.
             </Text>
             <Text.Row>
               <Text size={15} weight={600}>

@@ -2,19 +2,21 @@ import { UseMutationResult, useMutation } from 'react-query';
 
 import { useNavigation } from '@react-navigation/native';
 import { useSetRecoilState } from 'recoil';
+import { AxiosError } from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { AuthValues, auth, setAccessToken } from 'src/api';
+import { AuthResponse, AuthValues, auth, setAccessToken } from 'src/api';
 import { AuthState } from 'src/atom';
 
-export const useAuth = ({ force, phone, code }: AuthValues): UseMutationResult => {
+export const useAuth = (): UseMutationResult<AuthResponse, AxiosError, AuthValues> => {
   const navigate = useNavigation().navigate as (s: string) => void;
   const setAuthMessage = useSetRecoilState(AuthState);
-  return useMutation('useAuth', () => auth({ force, phone, code }), {
+  return useMutation('useAuth', auth, {
     onSuccess: ({ code, token }) => {
       if (code === 'authorized' && token) {
         navigate('Home');
         setAccessToken(token);
-        localStorage.setItem('token', token);
+        AsyncStorage.setItem('token', token);
       } else if (code === 'code_sent') {
         navigate('AuthStep2');
       }
