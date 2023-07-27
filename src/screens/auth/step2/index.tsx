@@ -25,7 +25,6 @@ export const AuthStep2Screen: React.FC = () => {
   const [auth, setAuth] = useRecoilState(AuthState);
 
   const [value, setValue] = useState('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [prevPhone, setPrevPhone] = useState<string>('');
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -41,7 +40,7 @@ export const AuthStep2Screen: React.FC = () => {
     }
   };
 
-  const { mutate } = useAuth();
+  const { mutate, isLoading } = useAuth();
 
   const onResend = () => {
     setValue('');
@@ -50,14 +49,12 @@ export const AuthStep2Screen: React.FC = () => {
   };
 
   const onAutoSubmit = (code: string) => {
-    setIsLoading(true);
-    mutate({ phone: prevPhone, code: code }, {onSettled: () => setIsLoading(false)});
+    mutate({ phone: prevPhone, code: code });
     setAuth({ step2message: '' });
   };
 
   const onSubmit = () => {
-    setIsLoading(true);
-    mutate({ phone: prevPhone, code: value }, {onSettled: () => setIsLoading(false)});
+    mutate({ phone: prevPhone, code: value });
     setAuth({ step2message: '' });
   };
 
