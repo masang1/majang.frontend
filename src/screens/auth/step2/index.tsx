@@ -6,12 +6,15 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
+import { useForm } from 'react-hook-form';
 
 import { useRecoilValue } from 'recoil';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { AuthState } from 'src/atom';
 import { AuthScreen, Button, Text } from 'src/components';
 import { colors } from 'src/styles';
+import { useAuth } from 'src/hooks';
 
 import * as S from './styled';
 
@@ -19,22 +22,36 @@ const CELL_COUNT = 6;
 const CODE_VAILDATION_REGEX = /^\d{6}$/;
 
 export const AuthStep2Screen: React.FC = () => {
+  const { handleSubmit } = useForm();
   const AuthPhone = useRecoilValue(AuthState);
 
   const [value, setValue] = useState('');
+  const [prevPhone, setPrevPhone] = useState<string>('');
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
 
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
-
   const handleResendCode = () => {
+    console.log(value);
     // Handle resend code logic here
   };
+
+  const { mutate } = useAuth();
+
+  const onSubmit = () => {
+    mutate({ phone: prevPhone, code: value });
+  };
+
+  const loadPrevPhone = async () => {
+    const phone = await AsyncStorage.getItem('phone');
+    phone && setPrevPhone(phone);
+  };
+
+  useEffect(() => {
+    loadPrevPhone();
+  }, []);
 
   return (
     <S.AuthStep2ScreenContainer>
@@ -42,7 +59,7 @@ export const AuthStep2Screen: React.FC = () => {
         button={
           <Button
             content={'계속'}
-            onClick={() => console.log(value)}
+            onClick={handleSubmit(onSubmit)}
             isDisabled={!CODE_VAILDATION_REGEX.test(value)}
           />
         }
@@ -53,7 +70,7 @@ export const AuthStep2Screen: React.FC = () => {
           </Text>
           <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }}>
             <Text size={15} weight={600}>
-              {AuthPhone.phone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}로 인증번호를 보냈어요.
+              {prevPhone?.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}로 인증번호를 보냈어요.
             </Text>
             <Text.Row>
               <Text size={15} weight={600}>
@@ -91,6 +108,9 @@ export const AuthStep2Screen: React.FC = () => {
             />
           </S.AuthStep2ScreenInputContainer>
         </S.AuthStep2ScreenInputSection>
+        <Text size={15} weight={600} color={colors.red}>
+          {AuthPhone.message}
+        </Text>
       </AuthScreen>
     </S.AuthStep2ScreenContainer>
   );

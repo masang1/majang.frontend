@@ -14,15 +14,20 @@ export const useAuth = (): UseMutationResult<AuthResponse, AxiosError, AuthValue
   return useMutation('useAuth', auth, {
     onSuccess: ({ code, token }) => {
       if (code === 'authorized' && token) {
-        navigate('Home');
+        navigate('Main');
         setAccessToken(token);
         AsyncStorage.setItem('token', token);
       } else if (code === 'code_sent') {
         navigate('AuthStep2');
       }
     },
-    onError: ({ code }) => {
-      setAuthMessage({ message: code });
+    // status 400
+    onError: (error, { code }) => {
+      console.log(error.response?.data, 'error');
+      if (error.response?.status === 400) {
+        // setAuthMessage({ message: error?.response?.data?.code });
+      }
     },
+    retry: 0,
   });
 };

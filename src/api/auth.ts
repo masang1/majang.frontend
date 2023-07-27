@@ -22,12 +22,7 @@ export interface AuthResponse {
 
 export const auth = async ({ phone, code }: AuthValues): Promise<AuthResponse> => {
   const token = await AsyncStorage.getItem('token');
-  console.log(
-    code
-      ? { force: token ? true : false, phone: phone, code: code }
-      : { force: token ? true : false, phone: phone },
-    API_SUFFIX.BASEURL,
-  );
+  console.log(code, 'code');
   const { data } = await instance.post(API_SUFFIX.AUTH, {
     ...(code
       ? { force: token ? true : false, phone: phone, code: code }

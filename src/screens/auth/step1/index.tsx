@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { TextInput } from 'react-native';
 
 import { useRecoilState } from 'recoil';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { AuthScreen, Button, Text } from 'src/components';
 import { AuthState } from 'src/atom';
@@ -13,6 +14,7 @@ import * as S from './styled';
 export const AuthStep1Screen: React.FC = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [phone, setPhone] = useState<string>('');
+  const [error, setError] = useState<string>('');
   const textInputRef = useRef<TextInput>(null);
   const [authPhone, setAuthPhone] = useRecoilState(AuthState);
 
@@ -23,6 +25,7 @@ export const AuthStep1Screen: React.FC = () => {
   const onTextChange = (text: string) => {
     let newText = '';
     const numbers = '0123456789';
+    const numberRegex = /01[0-1, 7][0-9]{7,8}$/;
 
     for (let i = 0; i < text.length; i++) {
       if (numbers.indexOf(text[i]) > -1) {
@@ -31,15 +34,22 @@ export const AuthStep1Screen: React.FC = () => {
         newText = newText.replace(text[i], '');
       }
     }
+    if (!numberRegex.test(newText)) {
+      setError('전화번호 형식이 올바르지 않습니다.');
+    } else {
+      setError('');
+      setIsDisabled(text.length !== 11);
+      setAuthPhone({ phone: text });
+    }
     setPhone(newText);
-    setIsDisabled(text.length !== 11);
-    setAuthPhone({ phone: text });
   };
 
   const { mutate } = useAuth();
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
+    await AsyncStorage.setItem('phone', phone);
     mutate({ phone: phone });
+    setAuthPhone({ message: '' });
   };
 
   return (
@@ -64,7 +74,7 @@ export const AuthStep1Screen: React.FC = () => {
           maxLength={11}
         />
         <Text size={15} weight={600} color={colors.red}>
-          {authPhone.message}
+          {authPhone.message || error}
         </Text>
       </AuthScreen>
     </S.AuthStep1ScreenContainer>
