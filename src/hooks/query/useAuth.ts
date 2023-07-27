@@ -29,16 +29,16 @@ export const useAuth = (): UseMutationResult<
       const code = error.response?.data.code;
       switch (code) {
         case 'invalid_phone':
-          setAuth({ step1message: '잘못된 전화번호입니다.' });
+          setAuth({ step1message: '전화번호가 잘못되었어요.' });
           break;
         case 'invalid_code':
-          setAuth({ step2message: '잘못된 인증번호입니다.' });
+          setAuth({ step2message: '인증번호가 잘못되었어요.' });
           break;
         case 'user_notfound':
-          setAuth({ step1message: '가입되지 않은 전화번호입니다.' });
+          setAuth({ step1message: '가입되지 않은 전화번호에요.' });
           break;
         case 'blocked':
-          setAuth({ step1message: '차단된 전화번호입니다.' });
+          setAuth({ step1message: '이용약관 위반으로 인해 영구적으로 차단된 전화번호에요.' });
           break;
       }
     },
