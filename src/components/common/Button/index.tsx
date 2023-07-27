@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Text } from 'src/components';
 import { colors } from 'src/styles';
+import { ActivityIndicator } from 'react-native';
 
 import * as S from './styled';
 
@@ -18,7 +19,7 @@ export const Button: React.FC<ButtonProps> = ({ content, onClick, isDisabled, is
       isDisabled={isDisabled || isLoading}
       activeOpacity={isDisabled ? 1 : 0.5}
     >
-      {isLoading ? <S.Spinner/> : null}
+      {isLoading ? <ActivityIndicator color={colors.white}/> : null}
       <Text weight={800} size={17} color={colors.white}>
         {content}
       </Text>

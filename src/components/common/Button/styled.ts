@@ -10,7 +10,3 @@ export const ButtonContainer = styled.TouchableOpacity<{ isDisabled?: boolean }>
   border-radius: 15px;
   background-color: ${({ isDisabled }) => (!isDisabled ? '#282828' : '#808080')};
 `;
-
-export const Spinner = styled.ActivityIndicator`
-  color: #ffffff;
-`;
