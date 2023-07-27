@@ -6,12 +6,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { RecoilRoot } from 'recoil';
+import { LogBox } from 'react-native';
 
 import { AuthStep1Screen, AuthStep2Screen, MainScreen, AuthScreen } from './src/screens';
 
 const Stack = createStackNavigator();
 
 const client = new QueryClient();
+
+LogBox.ignoreAllLogs(true)
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);

@@ -1,6 +1,6 @@
 import { UseMutationResult, useMutation } from 'react-query';
 
-import { useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import { useSetRecoilState } from 'recoil';
 import { AxiosError } from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -13,16 +13,22 @@ export const useAuth = (): UseMutationResult<
   AxiosError<{ code: string }>,
   AuthValues
 > => {
-  const navigate = useNavigation().navigate as (s: string) => void;
+  const navigator = useNavigation();
   const setAuth = useSetRecoilState(AuthState);
   return useMutation('useAuth', auth, {
     onSuccess: ({ code, token }) => {
       if (code === 'authorized' && token) {
-        navigate('Main');
+        navigator.dispatch(
+          CommonActions.reset({
+            routes: [
+              { name: "Main" },
+            ],
+        }))
+        navigator.navigate('Main' as never);
         setAccessToken(token);
         AsyncStorage.setItem('token', token);
       } else if (code === 'code_sent') {
-        navigate('AuthStep2');
+        navigator.navigate('AuthStep2' as never);
       }
     },
     onError: (error) => {

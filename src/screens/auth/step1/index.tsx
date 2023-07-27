@@ -18,6 +18,7 @@ export const AuthStep1Screen: React.FC = () => {
   const [error, setError] = useState<string>('');
   const textInputRef = useRef<TextInput>(null);
   const [auth, setAuth] = useRecoilState(AuthState);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onNotFocus = () => {
     textInputRef.current?.blur();
@@ -40,14 +41,15 @@ export const AuthStep1Screen: React.FC = () => {
   const { mutate } = useAuth();
 
   const onSubmit = async () => {
+    setIsLoading(true);
     await AsyncStorage.setItem('phone', phone);
-    mutate({ phone: phone });
-    setAuth({ step1message: '' });
+    mutate({ phone: phone }, {onSettled: () => setIsLoading(false)});
+    setAuth({ step1message: '' }); 
   };
 
   return (
     <S.AuthStep1ScreenContainer onPress={onNotFocus} activeOpacity={1}>
-      <AuthScreen button={<Button content={'계속'} onClick={onSubmit} isDisabled={isDisabled} />}>
+      <AuthScreen button={<Button content={'계속'} onClick={onSubmit} isDisabled={isDisabled} isLoading={isLoading}/>}>
         <Text.Column>
           <Text size={30} weight={800}>
             휴대폰 인증

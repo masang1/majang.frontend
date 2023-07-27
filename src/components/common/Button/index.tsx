@@ -8,15 +8,17 @@ export interface ButtonProps {
   content: string;
   onClick: any;
   isDisabled?: boolean;
+  isLoading?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({ content, onClick, isDisabled }) => {
+export const Button: React.FC<ButtonProps> = ({ content, onClick, isDisabled, isLoading }) => {
   return (
     <S.ButtonContainer
-      {...(!isDisabled && { onPress: onClick })}
-      isDisabled={isDisabled}
+      {...{ onPress: onClick, disabled: isDisabled || isLoading }}
+      isDisabled={isDisabled || isLoading}
       activeOpacity={isDisabled ? 1 : 0.5}
     >
+      {isLoading ? <S.Spinner/> : null}
       <Text weight={800} size={17} color={colors.white}>
         {content}
       </Text>
