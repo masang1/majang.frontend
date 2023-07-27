@@ -35,6 +35,9 @@ export const AuthStep2Screen: React.FC = () => {
   const onChangeText = (text: string) => {
     const newText = checkNumber(text);
     setValue(newText);
+    if (text.length === 6) {
+      onSubmit();
+    }
   };
 
   const { mutate } = useAuth();
