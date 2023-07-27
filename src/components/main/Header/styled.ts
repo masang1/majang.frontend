@@ -28,7 +28,6 @@ export const SearchBar = styled.View`
   align-items: center;
   background-color: ${colors.glassBackground};
   border-radius: 12px;
-  backdrop-filter: blur(16px);
 `;
 
 export const SearchIcon = styled(Ionicons)`
@@ -41,7 +40,6 @@ export const SearchInput = styled.TextInput`
   height: 42px;
   padding: 0px 16px;
   border-radius: 12px;
-  backdrop-filter: blur(16px);
   background-color: transparent;
   font-size: 14px;
 `;

@@ -36,7 +36,7 @@ export const AuthStep2Screen: React.FC = () => {
     const newText = checkNumber(text);
     setValue(newText);
     if (newText.length === 6) {
-      onSubmit(newText);
+      onAutoSubmit(newText);
     }
   };
 
@@ -48,8 +48,13 @@ export const AuthStep2Screen: React.FC = () => {
     setAuth({ step2message: '' });
   };
 
-  const onSubmit = (code: string) => {
+  const onAutoSubmit = (code: string) => {
     mutate({ phone: prevPhone, code });
+    setAuth({ step2message: '' });
+  };
+
+  const onSubmit = () => {
+    mutate({ phone: prevPhone, code: value });
     setAuth({ step2message: '' });
   };
 
