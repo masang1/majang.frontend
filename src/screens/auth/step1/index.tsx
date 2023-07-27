@@ -2,18 +2,15 @@ import React, { useRef, useState } from 'react';
 import { TextInput } from 'react-native';
 import { Controller, useForm } from 'react-hook-form';
 
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useNavigation } from '@react-navigation/native';
 
 import { AuthScreen, Button, Text } from 'src/components';
-import { phoneState } from 'src/atom';
+import { AuthState } from 'src/atom';
 import { colors } from 'src/styles';
+import { AuthValues } from 'src/api';
 
 import * as S from './styled';
-
-export interface AuthValues {
-  phone: string;
-}
 
 export const AuthStep1Screen: React.FC = () => {
   const {
@@ -26,7 +23,7 @@ export const AuthStep1Screen: React.FC = () => {
   const [text, setText] = useState<string>('');
   const textInputRef = useRef<TextInput>(null);
   const navigate = useNavigation().navigate as (s: string) => void;
-  const setPhone = useSetRecoilState(phoneState);
+  const [authPhone, setAuthPhone] = useRecoilState(AuthState);
 
   const onNotFocus = () => {
     textInputRef.current?.blur();
@@ -45,7 +42,7 @@ export const AuthStep1Screen: React.FC = () => {
     }
     setText(newText);
     setIsDisabled(text.length !== 11);
-    setPhone(text);
+    setAuthPhone({ phone: text });
   };
 
   const onSubmit = ({ phone }: AuthValues) => {
@@ -90,7 +87,7 @@ export const AuthStep1Screen: React.FC = () => {
           name="phone"
         />
         <Text size={15} weight={600} color={colors.red}>
-          {errors.phone?.message}
+          {errors.phone?.message || authPhone.message}
         </Text>
       </AuthScreen>
     </S.AuthStep1ScreenContainer>
