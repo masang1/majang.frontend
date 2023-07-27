@@ -25,7 +25,7 @@ export const AuthStep1Screen: React.FC = () => {
   const onTextChange = (text: string) => {
     let newText = '';
     const numbers = '0123456789';
-    const numberRegex = /01[0-1, 7][0-9]{7,8}$/;
+    const numberRegex = /^010-?\d{4}-?\d{4}$/;
 
     for (let i = 0; i < text.length; i++) {
       if (numbers.indexOf(text[i]) > -1) {

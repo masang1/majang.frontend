@@ -87,10 +87,6 @@ export const AuthScreen: React.FC = () => {
     }
   }, [activeList]);
 
-  const BASE_URL = process.env.BASE_URL;
-
-  console.log(BASE_URL);
-
   return (
     <S.AuthScreenContainer tabOpen={privacyTab} activeOpacity={1} onPress={handleClosePress}>
       <S.AuthScreenMainSection>

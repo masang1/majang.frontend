@@ -8,7 +8,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthResponse, AuthValues, auth, setAccessToken } from 'src/api';
 import { AuthState } from 'src/atom';
 
-export const useAuth = (): UseMutationResult<AuthResponse, AxiosError, AuthValues> => {
+export const useAuth = (): UseMutationResult<
+  AuthResponse,
+  AxiosError<{ code: string }>,
+  AuthValues
+> => {
   const navigate = useNavigation().navigate as (s: string) => void;
   const setAuthMessage = useSetRecoilState(AuthState);
   return useMutation('useAuth', auth, {
@@ -21,11 +25,21 @@ export const useAuth = (): UseMutationResult<AuthResponse, AxiosError, AuthValue
         navigate('AuthStep2');
       }
     },
-    // status 400
-    onError: (error, { code }) => {
-      console.log(error.response?.data, 'error');
-      if (error.response?.status === 400) {
-        // setAuthMessage({ message: error?.response?.data?.code });
+    onError: (error) => {
+      const code = error.response?.data.code;
+      switch (code) {
+        case 'invalid_phone':
+          setAuthMessage({ message: '잘못된 전화번호입니다.' });
+          break;
+        case 'invalid_code':
+          setAuthMessage({ message: '잘못된 인증번호입니다.' });
+          break;
+        case 'user_notfound':
+          setAuthMessage({ message: '가입되지 않은 전화번호입니다.' });
+          break;
+        case 'blocked':
+          setAuthMessage({ message: '차단된 전화번호입니다.' });
+          break;
       }
     },
     retry: 0,
