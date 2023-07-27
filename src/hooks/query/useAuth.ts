@@ -14,7 +14,7 @@ export const useAuth = (): UseMutationResult<
   AuthValues
 > => {
   const navigate = useNavigation().navigate as (s: string) => void;
-  const setAuthMessage = useSetRecoilState(AuthState);
+  const setAuth = useSetRecoilState(AuthState);
   return useMutation('useAuth', auth, {
     onSuccess: ({ code, token }) => {
       if (code === 'authorized' && token) {
@@ -29,16 +29,16 @@ export const useAuth = (): UseMutationResult<
       const code = error.response?.data.code;
       switch (code) {
         case 'invalid_phone':
-          setAuthMessage({ message: '잘못된 전화번호입니다.' });
+          setAuth({ step1message: '잘못된 전화번호입니다.' });
           break;
         case 'invalid_code':
-          setAuthMessage({ message: '잘못된 인증번호입니다.' });
+          setAuth({ step2message: '잘못된 인증번호입니다.' });
           break;
         case 'user_notfound':
-          setAuthMessage({ message: '가입되지 않은 전화번호입니다.' });
+          setAuth({ step1message: '가입되지 않은 전화번호입니다.' });
           break;
         case 'blocked':
-          setAuthMessage({ message: '차단된 전화번호입니다.' });
+          setAuth({ step1message: '차단된 전화번호입니다.' });
           break;
       }
     },

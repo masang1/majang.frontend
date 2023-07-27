@@ -8,6 +8,7 @@ import { AuthScreen, Button, Text } from 'src/components';
 import { AuthState } from 'src/atom';
 import { colors } from 'src/styles';
 import { useAuth } from 'src/hooks';
+import { checkNumber } from 'src/utils';
 
 import * as S from './styled';
 
@@ -16,30 +17,22 @@ export const AuthStep1Screen: React.FC = () => {
   const [phone, setPhone] = useState<string>('');
   const [error, setError] = useState<string>('');
   const textInputRef = useRef<TextInput>(null);
-  const [authPhone, setAuthPhone] = useRecoilState(AuthState);
+  const [auth, setAuth] = useRecoilState(AuthState);
 
   const onNotFocus = () => {
     textInputRef.current?.blur();
   };
 
   const onTextChange = (text: string) => {
-    let newText = '';
-    const numbers = '0123456789';
+    const newText = checkNumber(text);
     const numberRegex = /^010-?\d{4}-?\d{4}$/;
 
-    for (let i = 0; i < text.length; i++) {
-      if (numbers.indexOf(text[i]) > -1) {
-        newText = newText + text[i];
-      } else {
-        newText = newText.replace(text[i], '');
-      }
-    }
     if (!numberRegex.test(newText)) {
       setError('전화번호 형식이 올바르지 않습니다.');
     } else {
       setError('');
       setIsDisabled(text.length !== 11);
-      setAuthPhone({ phone: text });
+      setAuth({ phone: text });
     }
     setPhone(newText);
   };
@@ -49,7 +42,7 @@ export const AuthStep1Screen: React.FC = () => {
   const onSubmit = async () => {
     await AsyncStorage.setItem('phone', phone);
     mutate({ phone: phone });
-    setAuthPhone({ message: '' });
+    setAuth({ step1message: '' });
   };
 
   return (
@@ -74,7 +67,7 @@ export const AuthStep1Screen: React.FC = () => {
           maxLength={11}
         />
         <Text size={15} weight={600} color={colors.red}>
-          {authPhone.message || error}
+          {auth.step1message || error}
         </Text>
       </AuthScreen>
     </S.AuthStep1ScreenContainer>
