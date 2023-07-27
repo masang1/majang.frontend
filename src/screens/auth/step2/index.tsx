@@ -36,11 +36,11 @@ export const AuthStep2Screen: React.FC = () => {
     const newText = checkNumber(text);
     setValue(newText);
     if (newText.length === 6) {
-      onSubmit(newText);
+      onAutoSubmit(newText);
     }
   };
 
-  const { mutate } = useAuth();
+  const { mutate, isLoading } = useAuth();
 
   const onResend = () => {
     setValue('');
@@ -48,8 +48,13 @@ export const AuthStep2Screen: React.FC = () => {
     setAuth({ step2message: '' });
   };
 
-  const onSubmit = (code: string) => {
-    mutate({ phone: prevPhone, code });
+  const onAutoSubmit = (code: string) => {
+    mutate({ phone: prevPhone, code: code });
+    setAuth({ step2message: '' });
+  };
+
+  const onSubmit = () => {
+    mutate({ phone: prevPhone, code: value });
     setAuth({ step2message: '' });
   };
 
@@ -70,6 +75,7 @@ export const AuthStep2Screen: React.FC = () => {
             content={'계속'}
             onClick={onSubmit}
             isDisabled={!CODE_VALIDATION_REGEX.test(value)}
+            isLoading={isLoading}
           />
         }
       >
