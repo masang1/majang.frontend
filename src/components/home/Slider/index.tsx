@@ -20,9 +20,11 @@ export interface SliderProps {
 export const Slider: React.FC<SliderProps> = ({ title, goods }) => {
   return (
     <S.SliderContainer>
-      <Text size={22} weight={800}>
-        {title}
-      </Text>
+      <S.SliderTitleWrapper>
+        <Text size={22} weight={800}>
+          {title}
+        </Text>
+      </S.SliderTitleWrapper>
       <S.SliderImageSection horizontal={true} showsHorizontalScrollIndicator={false}>
         {goods.map(({ productName, price, auctionTime }, i) => (
           <S.SliderImageContainer key={i}>

@@ -11,6 +11,6 @@ export const HomeScreenContainer = styled.View`
 
 export const HomeScreenContentContainer = styled.ScrollView`
   flex: 1;
-  padding: 10px 22px;
+  padding: 10px 0;
   flex-direction: column;
 `;

@@ -6,7 +6,12 @@ export const SliderContainer = styled.ScrollView`
   margin-bottom: 60px;
 `;
 
+export const SliderTitleWrapper = styled.View`
+  padding-left: 22px;
+`;
+
 export const SliderImageSection = styled.ScrollView`
+  padding-left: 22px;
   margin-top: 20px;
   width: 100%;
   flex: 1;
