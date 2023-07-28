@@ -38,7 +38,6 @@ export const auth = async ({ phone, code }: AuthValues): Promise<AuthResponse> =
 export const getUser = async (): Promise<userResponse> => {
   const token = await AsyncStorage.getItem('token');
   setAccessToken(token);
-  console.log(token);
   const { data } = await instance.get(API_SUFFIX.GET_USER);
   return data;
 };
