@@ -1,10 +1,10 @@
-import { TextInput, TouchableWithoutFeedback } from 'react-native';
+import { TextInput } from 'react-native';
 
 import { styled } from 'styled-components/native';
 
 import { colors } from 'src/styles';
 
-export const AuthStep1ScreenContainer = styled(TouchableWithoutFeedback)`
+export const AuthStep1ScreenContainer = styled.TouchableOpacity`
   flex: 1;
   background-color: ${colors.white};
 `;

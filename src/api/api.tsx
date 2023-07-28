@@ -12,3 +12,11 @@ export const instance = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+export const setAccessToken = (token: string | null) => {
+  if (token) {
+    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  } else {
+    delete instance.defaults.headers.common.Authorization;
+  }
+};

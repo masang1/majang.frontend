@@ -1,14 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { API_SUFFIX, instance } from './api';
-
-export const setAccessToken = (token: string | null) => {
-  if (token) {
-    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-  } else {
-    delete instance.defaults.headers.common.Authorization;
-  }
-};
+import { API_SUFFIX, instance, setAccessToken } from './api';
 
 export interface AuthValues {
   phone: string;

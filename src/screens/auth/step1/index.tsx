@@ -46,7 +46,7 @@ export const AuthStep1Screen: React.FC = () => {
   };
 
   return (
-    <S.AuthStep1ScreenContainer onPress={onNotFocus}>
+    <S.AuthStep1ScreenContainer onPress={onNotFocus} activeOpacity={1}>
       <AuthScreen
         button={
           <Button
@@ -68,9 +68,7 @@ export const AuthStep1Screen: React.FC = () => {
         </Text.Column>
         <S.AuthStep1ScreenInput
           placeholder="휴대폰 번호를 입력해주세요."
-          onChangeText={(text: string) => {
-            onTextChange(text);
-          }}
+          onChangeText={onTextChange}
           value={phone}
           keyboardType="numeric"
           maxLength={11}
