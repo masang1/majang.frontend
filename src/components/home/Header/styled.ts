@@ -9,7 +9,7 @@ import { colors } from 'src/styles';
 export const HeaderContainer = styled.View`
   position: absolute;
   top: 0;
-  padding: ${Platform.OS === 'android' ? '50px' : '70px'} 22px 20px 22px;
+  padding: ${Platform.OS === 'android' ? '40px' : '60px'} 22px 20px 22px;
   width: 100%;
   flex-direction: row;
   align-items: center;
