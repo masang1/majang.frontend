@@ -46,7 +46,7 @@ export const AuthStep1Screen: React.FC = () => {
   };
 
   return (
-    <S.AuthStep1ScreenContainer onPress={onNotFocus} activeOpacity={1}>
+    <S.AuthStep1ScreenContainer onPress={onNotFocus}>
       <AuthScreen
         button={
           <Button
