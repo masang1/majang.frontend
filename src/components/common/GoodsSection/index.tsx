@@ -1,30 +1,28 @@
-import { Text } from 'src/components';
+import React from 'react';
+
+import { GoodsProps } from 'src/components/home';
 import { KeyBoardSVG } from 'src/assets';
 import { colors } from 'src/styles';
 
+import { Text } from '../Text';
+
 import * as S from './styled';
 
-export interface GoodsProps {
-  productName: string;
-  price: number;
-  auctionTime?: string;
-}
-
-export interface SliderProps {
+export interface GoodsSectionProps {
   title: string;
   goods: GoodsProps[];
 }
 
-export const Slider: React.FC<SliderProps> = ({ title, goods }) => {
+export const GoodsSection: React.FC<GoodsSectionProps> = ({ title, goods }) => {
   return (
-    <S.SliderContainer>
+    <S.GoodsSectionContainer>
       <Text size={22} weight={800}>
         {title}
       </Text>
-      <S.SliderImageSection horizontal={true} showsHorizontalScrollIndicator={false}>
+      <S.GoodsSection>
         {goods.map(({ productName, price, auctionTime }, i) => (
-          <S.SliderImageContainer key={i}>
-            <S.SliderImage source={KeyBoardSVG} style={{ borderColor: colors.gray }} />
+          <S.GoodsSectionImageContainer key={i}>
+            <S.GoodsSectionImage source={KeyBoardSVG} style={{ borderColor: colors.gray }} />
             <Text size={15} weight={600}>
               {productName}
             </Text>
@@ -36,9 +34,9 @@ export const Slider: React.FC<SliderProps> = ({ title, goods }) => {
                 {auctionTime}
               </Text>
             )}
-          </S.SliderImageContainer>
+          </S.GoodsSectionImageContainer>
         ))}
-      </S.SliderImageSection>
-    </S.SliderContainer>
+      </S.GoodsSection>
+    </S.GoodsSectionContainer>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Footer, Header, Slider } from 'src/components';
+import { Footer, GoodsSection, Header, Slider } from 'src/components';
 
 import * as S from './styled';
 
@@ -25,9 +25,9 @@ export const HomeScreen: React.FC = () => {
             auctionTime: '1시간 30분 남음',
           }))}
         />
-        <Slider
+        <GoodsSection
           title="조용한 저소음 키보드"
-          goods={Array.from({ length: 10 }).map(() => ({
+          goods={Array.from({ length: 6 }).map(() => ({
             productName: '키보드',
             price: 10000,
             auctionTime: '1시간 30분 남음',

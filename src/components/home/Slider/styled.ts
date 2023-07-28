@@ -24,5 +24,5 @@ export const SliderImage = styled.Image`
   width: 100%;
   height: 140px;
   border-radius: 10px;
-  border: 0.2px solid ${colors.gray};
+  border-width: 0.2px;
 `;
