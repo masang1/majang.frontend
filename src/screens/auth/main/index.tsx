@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Linking, TouchableOpacity, View } from 'react-native';
 import { WithLocalSvg } from 'react-native-svg';
@@ -6,7 +5,6 @@ import { Easing } from 'react-native-reanimated';
 
 import BottomSheet, { useBottomSheetTimingConfigs } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
-// import { BASE_URL } from '@env';
 
 import { PRIVACY_LIST } from 'src/constant';
 import { LogoSVG } from 'src/assets';
@@ -88,7 +86,7 @@ export const AuthScreen: React.FC = () => {
   }, [activeList]);
 
   return (
-    <S.AuthScreenContainer tabOpen={privacyTab} activeOpacity={1} onPress={handleClosePress}>
+    <S.AuthScreenContainer tabOpen={privacyTab} onPress={handleClosePress}>
       <S.AuthScreenMainSection>
         <WithLocalSvg width={100} height={100} asset={LogoSVG} />
         <Text.Column isCenter={true}>
@@ -122,10 +120,10 @@ export const AuthScreen: React.FC = () => {
           handleComponent={() => null}
           animationConfigs={animationConfigs}
         >
-          <S.PrivacyTabContentContainer activeOpacity={1} onPress={handleOpenPress}>
+          <S.PrivacyTabContentContainer onPress={handleOpenPress}>
             <S.PrivacyTabContentTitle>이용 약관</S.PrivacyTabContentTitle>
             <S.PrivacyTabContent>
-              <S.PrivacyTabContentWrapper onPress={onListToggle} activeOpacity={1}>
+              <S.PrivacyTabContentWrapper onPress={onListToggle}>
                 <TouchableOpacity activeOpacity={0.5} onPress={onListToggle}>
                   {allActive ? (
                     <WithLocalSvg width={20} height={20} color="000" asset={CheckBoxSVG} />
@@ -136,7 +134,7 @@ export const AuthScreen: React.FC = () => {
                 <S.PrivacyTabContentText isActive={allActive}>모두 동의</S.PrivacyTabContentText>
               </S.PrivacyTabContentWrapper>
               {PRIVACY_LIST.map(({ text, linkText, url }, i) => (
-                <S.PrivacyTabContentWrapper onPress={() => onActive(i)} activeOpacity={1} key={i}>
+                <S.PrivacyTabContentWrapper onPress={() => onActive(i)} key={i}>
                   <TouchableOpacity activeOpacity={0.5} onPress={() => onActive(i)}>
                     <WithLocalSvg
                       width={22}

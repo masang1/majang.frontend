@@ -1,8 +1,10 @@
+import { TouchableWithoutFeedback } from 'react-native';
+
 import styled from 'styled-components/native';
 
 import { colors } from 'src/styles';
 
-export const AuthScreenContainer = styled.TouchableOpacity<{ tabOpen: boolean }>`
+export const AuthScreenContainer = styled(TouchableWithoutFeedback)<{ tabOpen: boolean }>`
   flex: 1;
   z-index: 10;
   padding: 0 20px;
@@ -37,7 +39,7 @@ export const AuthScreenBottomTextContainer = styled.View`
   margin: 10px;
 `;
 
-export const PrivacyTabContentContainer = styled.TouchableOpacity`
+export const PrivacyTabContentContainer = styled(TouchableWithoutFeedback)`
   flex: 1;
   flex-direction: column;
   justify-content: center;
@@ -50,7 +52,7 @@ export const PrivacyTabContentTitle = styled.Text`
   font-weight: 600;
 `;
 
-export const PrivacyTabContentWrapper = styled.TouchableOpacity`
+export const PrivacyTabContentWrapper = styled(TouchableWithoutFeedback)`
   flex-direction: row;
   align-items: center;
   column-gap: 10px;

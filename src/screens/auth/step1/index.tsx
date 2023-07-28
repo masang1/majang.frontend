@@ -18,7 +18,6 @@ export const AuthStep1Screen: React.FC = () => {
   const [error, setError] = useState<string>('');
   const textInputRef = useRef<TextInput>(null);
   const [auth, setAuth] = useRecoilState(AuthState);
-  // const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const onNotFocus = () => {
     textInputRef.current?.blur();
@@ -47,7 +46,7 @@ export const AuthStep1Screen: React.FC = () => {
   };
 
   return (
-    <S.AuthStep1ScreenContainer onPress={onNotFocus} activeOpacity={1}>
+    <S.AuthStep1ScreenContainer onPress={onNotFocus}>
       <AuthScreen
         button={
           <Button
