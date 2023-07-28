@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 
 import { colors } from 'src/styles';
 
-export const AuthScreenContainer = styled(TouchableWithoutFeedback)<{ tabOpen: boolean }>`
+export const AuthScreenContainer = styled.TouchableOpacity<{ tabOpen: boolean }>`
   flex: 1;
   z-index: 10;
   padding: 0 20px;

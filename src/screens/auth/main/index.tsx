@@ -86,7 +86,7 @@ export const AuthScreen: React.FC = () => {
   }, [activeList]);
 
   return (
-    <S.AuthScreenContainer tabOpen={privacyTab} onPress={handleClosePress}>
+    <S.AuthScreenContainer tabOpen={privacyTab} activeOpacity={1} onPress={handleClosePress}>
       <S.AuthScreenMainSection>
         <WithLocalSvg width={100} height={100} asset={LogoSVG} />
         <Text.Column isCenter={true}>
