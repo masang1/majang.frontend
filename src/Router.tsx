@@ -23,7 +23,12 @@ export default function Router() {
     });
   };
 
-  const { data } = useFetchUser();
+  const { data, isLoading } = useFetchUser();
+
+  const loading = async () => {
+    await loadFonts();
+    isLoading;
+  };
 
   return isReady ? (
     <NavigationContainer>
@@ -39,7 +44,7 @@ export default function Router() {
     </NavigationContainer>
   ) : (
     <AppLoading
-      startAsync={loadFonts}
+      startAsync={loading}
       onFinish={() => setIsReady(true)}
       onError={() => {
         console.log('error');
