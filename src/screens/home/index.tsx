@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native';
 
 import { Footer, Header, Slider } from 'src/components';
 
@@ -10,8 +9,30 @@ export const HomeScreen: React.FC = () => {
     <S.HomeScreenContainer>
       <Header />
       <S.HomeScreenContentContainer>
-        <Text>expo는 구조 맘대로 바꾸면 터져요</Text>
-        <Slider />
+        <Slider
+          title="방금 올라온 매물!"
+          goods={Array.from({ length: 10 }).map(() => ({
+            productName: '키보드',
+            price: 10000,
+            auctionTime: '1시간 30분 남음',
+          }))}
+        />
+        <Slider
+          title="경매가 곧 끝나요!"
+          goods={Array.from({ length: 10 }).map(() => ({
+            productName: '키보드',
+            price: 10000,
+            auctionTime: '1시간 30분 남음',
+          }))}
+        />
+        <Slider
+          title="조용한 저소음 키보드"
+          goods={Array.from({ length: 10 }).map(() => ({
+            productName: '키보드',
+            price: 10000,
+            auctionTime: '1시간 30분 남음',
+          }))}
+        />
         <Footer />
       </S.HomeScreenContentContainer>
     </S.HomeScreenContainer>

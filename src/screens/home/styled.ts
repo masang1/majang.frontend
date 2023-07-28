@@ -12,8 +12,9 @@ export const HomeScreenContainer = styled.ScrollView`
 export const HomeScreenContentContainer = styled.View`
   flex: 1;
   padding: 0px 22px;
+  padding-bottom: 40px;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  row-gap: 40px;
+  row-gap: 60px;
 `;
