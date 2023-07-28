@@ -1,11 +1,11 @@
-import { UseMutationResult, useMutation } from 'react-query';
+import { UseMutationResult, UseQueryResult, useMutation, useQuery } from 'react-query';
 
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import { useSetRecoilState } from 'recoil';
 import { AxiosError } from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { AuthResponse, AuthValues, auth, setAccessToken } from 'src/api';
+import { AuthResponse, AuthValues, auth, getUser, setAccessToken, userResponse } from 'src/api';
 import { AuthState } from 'src/atom';
 
 export const useAuth = (): UseMutationResult<
@@ -20,10 +20,9 @@ export const useAuth = (): UseMutationResult<
       if (code === 'authorized' && token) {
         navigator.dispatch(
           CommonActions.reset({
-            routes: [
-              { name: "Main" },
-            ],
-        }))
+            routes: [{ name: 'Main' }],
+          }),
+        );
         navigator.navigate('Main' as never);
         setAccessToken(token);
         AsyncStorage.setItem('token', token);
@@ -48,6 +47,16 @@ export const useAuth = (): UseMutationResult<
           break;
       }
     },
+    retry: 0,
+  });
+};
+
+export const useFetchUser = (): UseQueryResult<userResponse, AxiosError> => {
+  return useQuery('useFetchUser', getUser, {
+    onError: (error) => {
+      console.log(error);
+    },
+    staleTime: 1000 * 60 * 60 * 24,
     retry: 0,
   });
 };

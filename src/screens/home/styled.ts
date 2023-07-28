@@ -2,13 +2,18 @@ import { styled } from 'styled-components/native';
 
 import { colors } from 'src/styles';
 
-export const HomeScreenContainer = styled.View`
+export const HomeScreenContainer = styled.ScrollView`
   flex: 1;
   width: 100%;
-  padding: 0 22px;
   flex-direction: column;
-  row-gap: 40px;
+  background-color: ${colors.white};
+`;
+
+export const HomeScreenContentContainer = styled.View`
+  flex: 1;
+  padding: 0px 22px;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  background-color: ${colors.white};
+  row-gap: 40px;
 `;

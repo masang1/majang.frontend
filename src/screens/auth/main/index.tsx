@@ -107,7 +107,7 @@ export const AuthScreen: React.FC = () => {
             <Text size={15} weight={700} color={colors.gray}>
               이미 계정이 있으신가요?
             </Text>
-            <TouchableOpacity onPress={() => navigate('Login')} activeOpacity={0.5}>
+            <TouchableOpacity onPress={() => navigate('AuthStep1')} activeOpacity={0.5}>
               <Text size={15} weight={800} color={colors.black}>
                 로그인
               </Text>
