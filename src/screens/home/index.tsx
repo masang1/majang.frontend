@@ -1,22 +1,16 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text } from 'react-native';
 
-import { Header } from 'src/components';
+import { Footer, Header } from 'src/components';
+
+import * as S from './styled';
 
 export const HomeScreen: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <S.HomeScreenContainer>
       <Header />
       <Text>expo는 구조 맘대로 바꾸면 터져요</Text>
-    </View>
+      <Footer />
+    </S.HomeScreenContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

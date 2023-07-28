@@ -1,5 +1,13 @@
 import { styled } from 'styled-components/native';
 
-export const FooterContainer = styled.View``;
+export const FooterContainer = styled.View`
+  width: 100%;
+  background-color: #f4f4f5;
+  padding: 16px;
+  border-radius: 12px;
+`;
 
-export const FooterText = styled.Text``;
+export const FooterTextContainer = styled.View`
+  flex-direction: column;
+  row-gap: 10px;
+`;
