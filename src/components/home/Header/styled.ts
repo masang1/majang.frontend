@@ -7,12 +7,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { colors } from 'src/styles';
 
 export const HeaderContainer = styled.View`
-  padding: ${Platform.OS === 'android' ? '40px' : '60px'} 22px 40px 22px;
+  flex: 0.1;
+  padding: ${Platform.OS === 'android' ? '40px' : '60px'} 22px 10px 22px;
   width: 100%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  flex: 1;
 `;
 
 export const LogoImg = styled(WithLocalSvg)`

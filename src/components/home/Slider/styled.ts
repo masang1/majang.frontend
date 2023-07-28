@@ -3,6 +3,7 @@ import { styled } from 'styled-components/native';
 export const SliderContainer = styled.ScrollView`
   flex: 1;
   width: 110%;
+  margin-bottom: 60px;
 `;
 
 export const SliderImageSection = styled.ScrollView`

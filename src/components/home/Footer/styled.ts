@@ -4,6 +4,7 @@ export const FooterContainer = styled.View`
   width: 100%;
   background-color: #f4f4f5;
   padding: 16px;
+  margin-bottom: 40px;
   border-radius: 12px;
 `;
 
