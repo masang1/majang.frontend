@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 
 import { GoodsProps } from 'src/components/home';
 import { KeyBoardSVG } from 'src/assets';
@@ -26,14 +27,21 @@ export const GoodsSection: React.FC<GoodsSectionProps> = ({ title, goods }) => {
             <Text size={15} weight={600}>
               {productName}
             </Text>
-            <Text size={15} weight={800}>
-              {price}원
-            </Text>
-            {auctionTime && (
-              <Text size={13} weight={600}>
-                {auctionTime}
+            <View>
+              <Text size={17} weight={800}>
+                {auctionTime && (
+                  <Text size={12} weight={800}>
+                    현재{' '}
+                  </Text>
+                )}
+                {price}원
               </Text>
-            )}
+              {auctionTime && (
+                <Text size={12} weight={600}>
+                  {auctionTime}
+                </Text>
+              )}
+            </View>
           </S.GoodsSectionImageContainer>
         ))}
       </S.GoodsSection>

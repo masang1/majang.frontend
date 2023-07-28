@@ -1,7 +1,5 @@
 import { styled } from 'styled-components/native';
 
-import { colors } from 'src/styles';
-
 export const GoodsSectionContainer = styled.ScrollView`
   flex: 1;
   width: 110%;
@@ -21,7 +19,7 @@ export const GoodsSection = styled.View`
 
 export const GoodsSectionImageContainer = styled.View`
   flex-direction: column;
-  row-gap: 4px;
+  row-gap: 2px;
   width: 108px;
 `;
 
@@ -30,5 +28,5 @@ export const GoodsSectionImage = styled.Image`
   height: 120px;
   border-radius: 10px;
   border-width: 0.2px;
-  /* border-color: ${colors.gray}; */
+  margin-bottom: 6px;
 `;

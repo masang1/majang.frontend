@@ -1,3 +1,5 @@
+import { View } from 'react-native';
+
 import { Text } from 'src/components';
 import { KeyBoardSVG } from 'src/assets';
 import { colors } from 'src/styles';
@@ -6,7 +8,7 @@ import * as S from './styled';
 
 export interface GoodsProps {
   productName: string;
-  price: number;
+  price: string;
   auctionTime?: string;
 }
 
@@ -25,17 +27,24 @@ export const Slider: React.FC<SliderProps> = ({ title, goods }) => {
         {goods.map(({ productName, price, auctionTime }, i) => (
           <S.SliderImageContainer key={i}>
             <S.SliderImage source={KeyBoardSVG} style={{ borderColor: colors.gray }} />
-            <Text size={15} weight={600}>
+            <Text size={17} weight={600}>
               {productName}
             </Text>
-            <Text size={15} weight={800}>
-              {price}원
-            </Text>
-            {auctionTime && (
-              <Text size={13} weight={600}>
-                {auctionTime}
+            <View>
+              <Text size={17} weight={800}>
+                {auctionTime && (
+                  <Text size={12} weight={800}>
+                    현재{' '}
+                  </Text>
+                )}
+                {price}원
               </Text>
-            )}
+              {auctionTime && (
+                <Text size={12} weight={600}>
+                  {auctionTime}
+                </Text>
+              )}
+            </View>
           </S.SliderImageContainer>
         ))}
       </S.SliderImageSection>
