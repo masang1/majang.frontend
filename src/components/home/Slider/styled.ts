@@ -2,7 +2,6 @@ import { styled } from 'styled-components/native';
 
 export const SliderContainer = styled.View`
   flex: 1;
-  width: 100%;
   margin-bottom: 60px;
 `;
 
@@ -11,18 +10,15 @@ export const SliderTitleWrapper = styled.View`
 `;
 
 export const SliderImageSection = styled.ScrollView`
-  /* padding-left: 22px; */
-  padding-right: 40px;
+  padding-left: 22px;
   margin-top: 20px;
-  width: 100%;
-  border: 1px solid red;
 `;
 
 export const SliderImageContainer = styled.View`
   flex-direction: column;
   row-gap: 2px;
   width: 140px;
-  /* margin-right: 20px; */
+  margin-right: 12px;
 `;
 
 export const SliderImage = styled.Image`

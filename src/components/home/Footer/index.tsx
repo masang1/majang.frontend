@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
     <S.FooterContainer>
       <S.FooterTextContainer>
         <View>
-          <Text size={10.5} weight={800} color={colors.gray}>
+          <Text size={10.1} weight={800} color={colors.gray}>
             (주)마법의상자
           </Text>
           {FOOTER_MESSAGE_LIST.map((message, index) => (
@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
             </Text>
           ))}
         </View>
-        <Text size={10.5} weight={800} color={colors.gray}>
+        <Text size={10.1} weight={800} color={colors.gray}>
           (주)마법의상자는 통신판매중개자로 거래 당사자가 아니며, {`\n`}
           회원간의 거래에 대해 관여하지 않고 어떠한 의무와 책임도 지지 않습니다.
         </Text>

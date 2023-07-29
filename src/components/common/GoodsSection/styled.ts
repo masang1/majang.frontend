@@ -4,6 +4,7 @@ export const GoodsSectionContainer = styled.View`
   flex: 1;
   width: 100%;
   margin-bottom: 60px;
+  margin-left: 22px;
 `;
 
 export const GoodsSection = styled.View`
