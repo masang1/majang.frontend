@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { API_SUFFIX, instance } from './api';
 
-export const setAccessToken = (token: string | null) => {
+export const setAccessToken = (token: string) => {
   if (token) {
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   } else {
@@ -35,8 +35,9 @@ export const auth = async ({ phone, code }: AuthValues): Promise<AuthResponse> =
   return data;
 };
 
-export const getUser = async (): Promise<userResponse> => {
+export const getUser = async (): Promise<userResponse | null> => {
   const token = await AsyncStorage.getItem('token');
+  if (!token) return null;
   setAccessToken(token);
   const { data } = await instance.get(API_SUFFIX.GET_USER);
   return data;

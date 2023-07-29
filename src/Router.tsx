@@ -6,9 +6,16 @@ import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
 import { useFetchUser } from 'src/hooks';
-import { AuthStep1Screen, AuthStep2Screen, MainScreen, AuthScreen } from 'src/screens';
+import { AuthStep1Screen, AuthStep2Screen, MainScreen, AuthScreen, WebViewScreen } from 'src/screens';
 
 const Stack = createStackNavigator();
+
+
+// 이거 있어야지 정석대로 라우팅할 수 있음
+// https://reactnavigation.org/docs/typescript/
+export type RootStackParamList = {
+  WebView: { url: string };
+};
 
 export default function Router() {
   const [isReady, setIsReady] = useState(false);
@@ -40,6 +47,7 @@ export default function Router() {
         <Stack.Screen name="Auth" component={AuthScreen} />
         <Stack.Screen name="AuthStep1" component={AuthStep1Screen} />
         <Stack.Screen name="AuthStep2" component={AuthStep2Screen} />
+        <Stack.Screen name="WebView" component={WebViewScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   ) : (

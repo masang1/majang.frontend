@@ -5,3 +5,4 @@ export * from './chat';
 export * from './my';
 export * from './registration';
 export * from './search';
+export * from './webview';
