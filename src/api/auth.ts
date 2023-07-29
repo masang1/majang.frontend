@@ -21,6 +21,7 @@ export interface userResponse {
 
 export const auth = async ({ phone, code }: AuthValues): Promise<AuthResponse> => {
   const force = true;
+  console.log({ phone, code }, API_SUFFIX.BASEURL);
   const { data } = await instance.post(API_SUFFIX.AUTH, {
     ...(code ? { force, phone: phone, code: code } : { force, phone: phone }),
   });

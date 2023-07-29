@@ -2,7 +2,7 @@ import { styled } from 'styled-components/native';
 
 export const GoodsSectionContainer = styled.View`
   flex: 1;
-  width: 110%;
+  width: 100%;
   margin-bottom: 60px;
 `;
 

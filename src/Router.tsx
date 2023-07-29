@@ -32,10 +32,7 @@ export default function Router() {
 
   return isReady ? (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName={data ? 'Main' : 'Auth'}
-      >
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={'Main'}>
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Auth" component={AuthScreen} />
         <Stack.Screen name="AuthStep1" component={AuthStep1Screen} />

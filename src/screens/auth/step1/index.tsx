@@ -15,7 +15,6 @@ import * as S from './styled';
 export const AuthStep1Screen: React.FC = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [phone, setPhone] = useState<string>('');
-  const [error, setError] = useState<string>('');
   const textInputRef = useRef<TextInput>(null);
   const [auth, setAuth] = useRecoilState(AuthState);
 
@@ -25,15 +24,9 @@ export const AuthStep1Screen: React.FC = () => {
 
   const onTextChange = (text: string) => {
     const newText = checkNumber(text);
-    const numberRegex = /^010-?\d{4}-?\d{4}$/;
 
-    if (!numberRegex.test(newText)) {
-      setError('전화번호 형식이 올바르지 않습니다.');
-    } else {
-      setError('');
-      setIsDisabled(text.length !== 11);
-      setAuth({ phone: text });
-    }
+    setIsDisabled(text.length !== 11);
+    setAuth({ phone: text });
     setPhone(newText);
   };
 
@@ -74,7 +67,7 @@ export const AuthStep1Screen: React.FC = () => {
           maxLength={11}
         />
         <Text size={15} weight={600} color={colors.red}>
-          {auth.step1message || error}
+          {auth.step1message}
         </Text>
       </AuthScreen>
     </S.AuthStep1ScreenContainer>
