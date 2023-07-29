@@ -9,7 +9,10 @@ const BottomTab = createBottomTabNavigator();
 
 export const MainScreen: React.FC = () => {
   return (
-    <BottomTab.Navigator screenOptions={{ headerShown: false }} initialRouteName="Main">
+    <BottomTab.Navigator
+      screenOptions={{ headerShown: false, tabBarStyle: { paddingBottom: 30 } }}
+      initialRouteName="Main"
+    >
       <BottomTab.Screen
         name="홈"
         component={HomeScreen}
