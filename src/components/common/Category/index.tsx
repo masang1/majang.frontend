@@ -1,5 +1,7 @@
 import { WithLocalSvg } from 'react-native-svg';
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useNavigation } from '@react-navigation/native';
 
 import { CATEGORY_LIST } from 'src/constant';
 
@@ -8,24 +10,17 @@ import { Text } from '../Text';
 import * as S from './styled';
 
 export const Category: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState(CATEGORY_LIST.map(() => false));
-  const onPressCategory = (index: number) => {
-    setSelectedCategory((prev) => prev.map((_, i) => (i === index ? true : false)));
-  };
+  const navigator = useNavigation();
+
   return (
     <S.CategoryContainer>
-      {CATEGORY_LIST.map(({ name, blackIcon, whiteIcon }, i) => (
+      {CATEGORY_LIST.map(({ name, Icon, navigate }, i) => (
         <S.CategoryItemContainer key={i}>
           <S.CategoryItemWrapper
-            isActive={selectedCategory[i]}
             activeOpacity={0.5}
-            onPress={() => onPressCategory(i)}
+            onPress={() => navigator.navigate(navigate as never)}
           >
-            <WithLocalSvg
-              asset={selectedCategory[i] ? whiteIcon : blackIcon}
-              width={36}
-              height={36}
-            />
+            <WithLocalSvg asset={Icon} width={36} height={36} />
           </S.CategoryItemWrapper>
           <Text size={14} weight={700}>
             {name}
