@@ -26,6 +26,7 @@ export const AuthStep2Screen: React.FC = () => {
 
   const [value, setValue] = useState('');
   const [prevPhone, setPrevPhone] = useState<string>('');
+  const [send, setSend] = useState<boolean>(false);
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
@@ -43,9 +44,11 @@ export const AuthStep2Screen: React.FC = () => {
   const { mutate, isLoading } = useAuth();
 
   const onResend = () => {
+    if (send) return;
     setValue('');
     mutate({ phone: prevPhone });
     setAuth({ step2message: '' });
+    setSend(true);
   };
 
   const onAutoSubmit = (code: string) => {
@@ -91,8 +94,8 @@ export const AuthStep2Screen: React.FC = () => {
               <Text size={15} weight={600}>
                 인증번호가 오지 않나요?
               </Text>
-              <TouchableOpacity activeOpacity={0.5} onPress={onResend}>
-                <Text size={15} weight={800} color={colors.black}>
+              <TouchableOpacity activeOpacity={!send ? 0.5 : 1} onPress={onResend}>
+                <Text size={15} weight={800} color={!send ? colors.black : colors.gray}>
                   재전송하기
                 </Text>
               </TouchableOpacity>
