@@ -28,7 +28,7 @@ export const Slider: React.FC<SliderProps> = ({ title, goods }) => {
       <S.SliderImageSection
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingRight: 22 }}
+        contentContainerStyle={{ paddingRight: 36 }}
       >
         {goods.map(({ productName, price, auctionTime }, i) => (
           <S.SliderImageContainer key={i} id={`${i}`}>

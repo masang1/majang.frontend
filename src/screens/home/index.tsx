@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Footer, GoodsSection, Header, Slider } from 'src/components';
+import { Category, Footer, GoodsSection, Header, Slider } from 'src/components';
 
 import * as S from './styled';
 
@@ -9,6 +9,7 @@ export const HomeScreen: React.FC = () => {
     <S.HomeScreenContainer>
       <Header />
       <S.HomeScreenContentContainer>
+        <Category />
         <Slider
           title="방금 올라온 매물!"
           goods={Array.from({ length: 10 }).map(() => ({

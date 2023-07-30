@@ -2,7 +2,7 @@ import { styled } from 'styled-components/native';
 
 export const SliderContainer = styled.View`
   flex: 1;
-  margin-bottom: 60px;
+  margin-top: 60px;
 `;
 
 export const SliderTitleWrapper = styled.View`

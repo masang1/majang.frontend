@@ -65,6 +65,7 @@ export const AuthStep1Screen: React.FC = () => {
           value={phone}
           keyboardType="numeric"
           maxLength={11}
+          ref={textInputRef}
         />
         <Text size={15} weight={600} color={colors.red}>
           {auth.step1message}
