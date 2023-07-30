@@ -16,11 +16,11 @@ export const CategoryItemContainer = styled.View`
   justify-content: center;
 `;
 
-export const CategoryItemWrapper = styled.TouchableOpacity`
+export const CategoryItemWrapper = styled.TouchableOpacity<{ isActive: boolean }>`
   width: 55px;
   height: 55px;
   border-radius: 12px;
   align-items: center;
   justify-content: center;
-  background-color: #f8f8f8;
+  background-color: ${({ isActive }) => (isActive ? '#000' : '#F8F8F8')};
 `;

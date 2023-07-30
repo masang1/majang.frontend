@@ -1,30 +1,48 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { KeyKab2Icon, KeyKabIcon, KeyboardIcon, LikeIcon, SwitchIcon } from 'src/assets';
+
+import {
+  AtisanBlackIcon,
+  AtisanWhiteIcon,
+  KeyKabBlackIcon,
+  KeyKabWhiteIcon,
+  KeyboardBlackIcon,
+  KeyboardWhiteIcon,
+  LikeBlackIcon,
+  LikeWhiteIcon,
+  SwitchBlackIcon,
+  SwitchWhiteIcon,
+} from 'src/assets';
 
 export interface CategoryItems {
-  text: string;
-  icon: any;
+  name: string;
+  blackIcon: any;
+  whiteIcon: any;
 }
 
 export const CATEGORY_LIST: CategoryItems[] = [
   {
-    text: '찜 목록',
-    icon: LikeIcon,
+    name: '찜 목록',
+    blackIcon: LikeBlackIcon,
+    whiteIcon: LikeWhiteIcon,
   },
   {
-    text: '키보드',
-    icon: KeyboardIcon,
+    name: '키보드',
+    blackIcon: KeyboardBlackIcon,
+    whiteIcon: KeyboardWhiteIcon,
   },
   {
-    text: '키캡',
-    icon: KeyKabIcon,
+    name: '키캡',
+    blackIcon: KeyKabBlackIcon,
+    whiteIcon: KeyKabWhiteIcon,
   },
   {
-    text: '아티산',
-    icon: KeyKab2Icon,
+    name: '아티산',
+    blackIcon: AtisanBlackIcon,
+    whiteIcon: AtisanWhiteIcon,
   },
   {
-    text: '스위치',
-    icon: SwitchIcon,
+    name: '스위치',
+    blackIcon: SwitchBlackIcon,
+    whiteIcon: SwitchWhiteIcon,
   },
 ];
